@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
+using System.Web.Script.Serialization;
 
 namespace QuizGameAPI
 {
@@ -33,7 +35,13 @@ namespace QuizGameAPI
 
         public Question GetQuestionByID(int id)
         {
-            return null;
+            JavaScriptSerializer oSerializer = new JavaScriptSerializer();
+            using (WebClient webClient = new System.Net.WebClient())
+            {
+                WebClient n = new WebClient();
+                String json = n.DownloadString("http://localhost:8080/quizgame-backend/question/" + id);
+                return oSerializer.Deserialize<Question>(json);
+            }
         }
 
         // ----- ANSWERS ----- //

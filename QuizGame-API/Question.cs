@@ -17,5 +17,17 @@ namespace QuizGameAPI
             get { return id; }
             set { id = value; }
         }
+
+        public String Title
+        {
+            get { return title; }
+            set { title = value; }
+        }
+
+        public String Category
+        {
+            get { return category; }
+            set { category = value; }
+        }
     }
 }
