@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizGame-API", "QuizGame-API\QuizGame-API.csproj", "{DB97EB01-1AF7-4212-9DDF-AAA622FC7495}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizGame-API-Test", "QuizGame-API-Test\QuizGame-API-Test.csproj", "{91220C15-53AA-4ADB-BE18-3CEB10A1106A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{DB97EB01-1AF7-4212-9DDF-AAA622FC7495}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB97EB01-1AF7-4212-9DDF-AAA622FC7495}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB97EB01-1AF7-4212-9DDF-AAA622FC7495}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91220C15-53AA-4ADB-BE18-3CEB10A1106A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91220C15-53AA-4ADB-BE18-3CEB10A1106A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91220C15-53AA-4ADB-BE18-3CEB10A1106A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91220C15-53AA-4ADB-BE18-3CEB10A1106A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
