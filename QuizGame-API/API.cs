@@ -10,6 +10,8 @@ namespace QuizGameAPI
     {
         private String apiKey;
 
+        JavaScriptSerializer serializer;
+
         /// <summary>
         /// Overloaded constructor
         /// </summary>
@@ -30,17 +32,31 @@ namespace QuizGameAPI
 
         public List<Question> GetQuestions()
         {
-            return null;
+            serializer = new JavaScriptSerializer();
+            try
+            {
+                WebClient n = new WebClient();
+                String json = n.DownloadString("http://localhost:8080/quizgame-backend/question");
+                return serializer.Deserialize<List<Question>>(json);
+            }
+            catch (WebException e)
+            {
+                return null;
+            }
         }
 
         public Question GetQuestionByID(int id)
         {
-            JavaScriptSerializer oSerializer = new JavaScriptSerializer();
-            using (WebClient webClient = new System.Net.WebClient())
+            serializer = new JavaScriptSerializer();
+            try
             {
                 WebClient n = new WebClient();
                 String json = n.DownloadString("http://localhost:8080/quizgame-backend/question/" + id);
-                return oSerializer.Deserialize<Question>(json);
+                return serializer.Deserialize<Question>(json);
+            }
+            catch (WebException e)
+            {
+                return null;
             }
         }
 
