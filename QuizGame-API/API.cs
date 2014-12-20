@@ -8,15 +8,23 @@ namespace QuizGameAPI
 {
     public class API
     {
+        // Instance variables
+        private String url;
         private String apiKey;
 
-        JavaScriptSerializer serializer;
+        private JavaScriptSerializer serializer;
+
+        private API()
+        {
+            this.url = "http://localhost:8080/quizgame-backend";
+            this.serializer = new JavaScriptSerializer();
+        }
 
         /// <summary>
         /// Overloaded constructor
         /// </summary>
         /// <param name="apiKey">The API key to use</param>
-        public API(String apiKey)
+        public API(String apiKey) : this()
         {
             this.apiKey = apiKey;
         }
@@ -32,11 +40,10 @@ namespace QuizGameAPI
 
         public List<Question> GetQuestions()
         {
-            serializer = new JavaScriptSerializer();
             try
             {
                 WebClient n = new WebClient();
-                String json = n.DownloadString("http://localhost:8080/quizgame-backend/question");
+                String json = n.DownloadString(url + "/question");
                 return serializer.Deserialize<List<Question>>(json);
             }
             catch (WebException e)
@@ -47,11 +54,10 @@ namespace QuizGameAPI
 
         public Question GetQuestionByID(int id)
         {
-            serializer = new JavaScriptSerializer();
             try
             {
                 WebClient n = new WebClient();
-                String json = n.DownloadString("http://localhost:8080/quizgame-backend/question/" + id);
+                String json = n.DownloadString(url + "/question/" + id);
                 return serializer.Deserialize<Question>(json);
             }
             catch (WebException e)
