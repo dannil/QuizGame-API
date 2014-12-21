@@ -12,7 +12,9 @@ namespace QuizGame_API_Test
         {
             API api = new API("");
             Question question = api.GetQuestionByID(0);
-            //List<Question> questions = api.GetQuestions();
+            List<Question> questions1 = api.GetQuestions();
+            List<Question> questions2 = api.GetQuestionsByCategory("algebra");
+            List<CategoryHolder> categories1 = api.GetCategories();
         }
     }
 }
