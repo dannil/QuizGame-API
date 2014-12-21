@@ -31,12 +31,26 @@ namespace QuizGameAPI
 
         // ----- CATEGORIES ----- //
 
-        public List<String> GetCategories()
-        {
-            return null;
-        }
+        //public List<String> GetCategories()
+        //{
+        //    return null;
+        //}
 
         // ----- QUESTIONS ----- //
+
+        public Question GetQuestionByID(int id)
+        {
+            try
+            {
+                WebClient n = new WebClient();
+                String json = n.DownloadString(url + "/question/" + id);
+                return serializer.Deserialize<Question>(json);
+            }
+            catch (WebException e)
+            {
+                return null;
+            }
+        }
 
         public List<Question> GetQuestions()
         {
@@ -52,13 +66,13 @@ namespace QuizGameAPI
             }
         }
 
-        public Question GetQuestionByID(int id)
+        public List<Question> GetQuestionsByCategory(String category)
         {
             try
             {
                 WebClient n = new WebClient();
-                String json = n.DownloadString(url + "/question/" + id);
-                return serializer.Deserialize<Question>(json);
+                String json = n.DownloadString(url + "/question/category/" + category);
+                return serializer.Deserialize<List<Question>>(json);
             }
             catch (WebException e)
             {
