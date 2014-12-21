@@ -11,8 +11,8 @@ namespace QuizGame_API_Test
         public static void Main(String[] args)
         {
             API api = new API("");
-            Question question = api.GetQuestionByID(1);
-            List<Question> questions = api.GetQuestions();
+            Question question = api.GetQuestionByID(0);
+            //List<Question> questions = api.GetQuestions();
         }
     }
 }
