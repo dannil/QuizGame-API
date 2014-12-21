@@ -9,7 +9,7 @@ namespace QuizGameAPI
         private int id;
         private String title;
 
-        private String category;
+        private List<CategoryHolder> categories;
         private List<AnswerHolder> answers;
 
         public int ID
@@ -24,10 +24,10 @@ namespace QuizGameAPI
             set { title = value; }
         }
 
-        public String Category
+        public List<CategoryHolder> Categories
         {
-            get { return category; }
-            set { category = value; }
+            get { return categories; }
+            set { categories = value; }
         }
 
         public List<AnswerHolder> Answers

@@ -38,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnswerHolder.cs" />
+    <Compile Include="CategoryHolder.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="API.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
