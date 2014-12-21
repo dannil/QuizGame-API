@@ -10,7 +10,7 @@ namespace QuizGameAPI
         private String title;
 
         private String category;
-        private List<Answer> answers;
+        private List<AnswerHolder> answers;
 
         public int ID
         {
@@ -28,6 +28,12 @@ namespace QuizGameAPI
         {
             get { return category; }
             set { category = value; }
+        }
+
+        public List<AnswerHolder> Answers
+        {
+            get { return answers; }
+            set { answers = value; }
         }
     }
 }

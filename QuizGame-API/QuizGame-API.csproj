@@ -37,7 +37,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Answer.cs" />
+    <Compile Include="AnswerHolder.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="API.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

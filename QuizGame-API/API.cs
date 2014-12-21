@@ -68,22 +68,22 @@ namespace QuizGameAPI
 
         // ----- ANSWERS ----- //
 
-        public List<Answer> GetAnswers()
+        public List<AnswerHolder> GetAnswers()
         {
             return null;
         }
 
-        public List<Answer> GetAnswersByCategory(String category)
+        public List<AnswerHolder> GetAnswersByCategory(String category)
         {
             return null;
         }
 
-        public List<Answer> GetAnswersByQuestionID(int id)
+        public List<AnswerHolder> GetAnswersByQuestionID(int id)
         {
             return null;
         }
 
-        public List<Answer> GetAnswersByQuestion(Question question)
+        public List<AnswerHolder> GetAnswersByQuestion(Question question)
         {
             return this.GetAnswersByQuestionID(question.ID);
         }
