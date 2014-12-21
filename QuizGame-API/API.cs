@@ -31,10 +31,19 @@ namespace QuizGameAPI
 
         // ----- CATEGORIES ----- //
 
-        //public List<String> GetCategories()
-        //{
-        //    return null;
-        //}
+        public List<CategoryHolder> GetCategories()
+        {
+            try
+            {
+                WebClient n = new WebClient();
+                String json = n.DownloadString(url + "/category");
+                return serializer.Deserialize<List<CategoryHolder>>(json);
+            }
+            catch (WebException e)
+            {
+                return null;
+            }
+        }
 
         // ----- QUESTIONS ----- //
 
