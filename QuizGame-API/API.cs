@@ -36,17 +36,23 @@ namespace QuizGameAPI
         {
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url + "/category");
             request.Method = "GET";
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            HttpStatusCode statusCode = response.StatusCode;
-
-            if (statusCode.Equals(HttpStatusCode.OK))
+            try
             {
-                Stream stream = response.GetResponseStream();
-                StreamReader sr = new StreamReader(stream);
-                String json = sr.ReadToEnd();
-                return serializer.Deserialize<List<CategoryHolder>>(json);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                HttpStatusCode statusCode = response.StatusCode;
+                if (statusCode.Equals(HttpStatusCode.OK))
+                {
+                    Stream stream = response.GetResponseStream();
+                    StreamReader sr = new StreamReader(stream);
+                    String json = sr.ReadToEnd();
+                    return serializer.Deserialize<List<CategoryHolder>>(json);
+                }
+                else
+                {
+                    return null;
+                }
             }
-            else
+            catch
             {
                 return null;
             }
@@ -58,17 +64,23 @@ namespace QuizGameAPI
         {
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url + "/question/" + id);
             request.Method = "GET";
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            HttpStatusCode statusCode = response.StatusCode;
-
-            if (statusCode.Equals(HttpStatusCode.OK))
+            try
             {
-                Stream stream = response.GetResponseStream();
-                StreamReader sr = new StreamReader(stream);
-                String json = sr.ReadToEnd();
-                return serializer.Deserialize<Question>(json);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                HttpStatusCode statusCode = response.StatusCode;
+                if (statusCode.Equals(HttpStatusCode.OK))
+                {
+                    Stream stream = response.GetResponseStream();
+                    StreamReader sr = new StreamReader(stream);
+                    String json = sr.ReadToEnd();
+                    return serializer.Deserialize<Question>(json);
+                }
+                else
+                {
+                    return null;
+                }
             }
-            else
+            catch
             {
                 return null;
             }
@@ -78,17 +90,23 @@ namespace QuizGameAPI
         {
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url + "/question");
             request.Method = "GET";
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            HttpStatusCode statusCode = response.StatusCode;
-
-            if (statusCode.Equals(HttpStatusCode.OK))
+            try
             {
-                Stream stream = response.GetResponseStream();
-                StreamReader sr = new StreamReader(stream);
-                String json = sr.ReadToEnd();
-                return serializer.Deserialize<List<Question>>(json);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                HttpStatusCode statusCode = response.StatusCode;
+                if (statusCode.Equals(HttpStatusCode.OK))
+                {
+                    Stream stream = response.GetResponseStream();
+                    StreamReader sr = new StreamReader(stream);
+                    String json = sr.ReadToEnd();
+                    return serializer.Deserialize<List<Question>>(json);
+                }
+                else
+                {
+                    return null;
+                }
             }
-            else
+            catch
             {
                 return null;
             }
@@ -97,18 +115,24 @@ namespace QuizGameAPI
         public List<Question> GetQuestionsByCategory(String category)
         {
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url + "/question/category/" + category);
-            request.Method = "GET";
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            HttpStatusCode statusCode = response.StatusCode;
-
-            if (statusCode.Equals(HttpStatusCode.OK))
+            try
             {
-                Stream stream = response.GetResponseStream();
-                StreamReader sr = new StreamReader(stream);
-                String json = sr.ReadToEnd();
-                return serializer.Deserialize<List<Question>>(json);
+                request.Method = "GET";
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                HttpStatusCode statusCode = response.StatusCode;
+                if (statusCode.Equals(HttpStatusCode.OK))
+                {
+                    Stream stream = response.GetResponseStream();
+                    StreamReader sr = new StreamReader(stream);
+                    String json = sr.ReadToEnd();
+                    return serializer.Deserialize<List<Question>>(json);
+                }
+                else
+                {
+                    return null;
+                }
             }
-            else
+            catch
             {
                 return null;
             }
@@ -118,14 +142,20 @@ namespace QuizGameAPI
         {
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url + "/question/" + id);
             request.Method = "DELETE";
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            HttpStatusCode statusCode = response.StatusCode;
-
-            if (statusCode.Equals(HttpStatusCode.OK))
+            try
             {
-                return true;
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                HttpStatusCode statusCode = response.StatusCode;
+                if (statusCode.Equals(HttpStatusCode.OK))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch
             {
                 return false;
             }
