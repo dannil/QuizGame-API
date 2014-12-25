@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Web.Script.Serialization;
 
@@ -38,7 +39,7 @@ namespace QuizGameAPI
         /// <returns>A list of categories</returns>
         public List<CategoryHolder> GetCategories()
         {
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url + "/category");
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url + "/category");
             request.Method = "GET";
             try
             {
@@ -71,7 +72,7 @@ namespace QuizGameAPI
         /// <returns>A question with the specified id</returns>
         public Question GetQuestion(int id)
         {
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url + "/question/" + id);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url + "/question/" + id);
             request.Method = "GET";
             try
             {
@@ -101,7 +102,7 @@ namespace QuizGameAPI
         /// <returns>A list of questions</returns>
         public List<Question> GetQuestions()
         {
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url + "/question");
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url + "/question");
             request.Method = "GET";
             try
             {
@@ -132,7 +133,7 @@ namespace QuizGameAPI
         /// <returns>A list of questions</returns>
         public List<Question> GetQuestionsByCategory(String category)
         {
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url + "/question/category/" + category);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url + "/question/category/" + category);
             request.Method = "GET";
             try
             {
@@ -154,6 +155,64 @@ namespace QuizGameAPI
             {
                 return null;
             }
+        }
+
+        public Boolean AddQuestion(Question question)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url + "/question");
+            request.Method = "POST";
+
+            String formContent = "json=" + serializer.Serialize(question);
+
+            byte[] byteArray = Encoding.UTF8.GetBytes(formContent);
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentLength = byteArray.Length;
+
+            Stream dataStream = request.GetRequestStream();
+            dataStream.Write(byteArray, 0, byteArray.Length);
+            dataStream.Close();
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+
+            reader.Close();
+            dataStream.Close();
+            response.Close();
+
+            if (response.StatusCode.Equals(HttpStatusCode.OK)) {
+                return true;
+            }
+            return false;
+
+            //UTF8Encoding encoding = new UTF8Encoding();
+            //String postData = "json=" + serializer.Serialize(question);
+            //byte[] data = encoding.GetBytes(postData);
+
+            //HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url + "/question");
+            //request.Method = "POST";
+            //request.ContentType = "application/x-www-form-urlencoded";
+
+            //request.ContentLength = data.Length;
+            //Stream newStream = request.GetRequestStream();
+
+            //// Send the data
+            //newStream.Write(data, 0, data.Length);
+            //newStream.Close();
+
+            //using (StreamWriter streamWriter = new StreamWriter(request.GetRequestStream()))
+            //{
+            //    String json = serializer.Serialize(question);
+            //    streamWriter.Write(json);
+            //    streamWriter.Flush();
+            //    streamWriter.Close();
+
+            //    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            //    using (var streamReader = new StreamReader(response.GetResponseStream()))
+            //    {
+            //        String result = streamReader.ReadToEnd();
+            //    }
+            //}
         }
 
         /// <summary>

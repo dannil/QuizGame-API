@@ -15,7 +15,7 @@ namespace QuizGameAPI
         public int ID
         {
             get { return id; }
-            set { id = value; }
+            private set { }
         }
 
         public String Title
