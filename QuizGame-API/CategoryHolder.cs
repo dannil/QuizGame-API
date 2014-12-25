@@ -9,6 +9,16 @@ namespace QuizGameAPI
     {
         private String category;
 
+        public CategoryHolder()
+        {
+
+        }
+
+        public CategoryHolder(String category)
+        {
+            this.category = category;
+        }
+
         public String Category
         {
             get { return category; }

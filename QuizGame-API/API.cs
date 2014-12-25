@@ -157,33 +157,42 @@ namespace QuizGameAPI
             }
         }
 
-        public Boolean AddQuestion(Question question)
+        /// <summary>
+        /// Add the specified question.
+        /// </summary>
+        /// <param name="question">The question to add</param>
+        /// <returns>A question with new values set by the back-end system</returns>
+        public Question AddQuestion(Question question)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url + "/question");
             request.Method = "POST";
+            try
+            {
+                String formContent = "json=" + serializer.Serialize(question);
 
-            String formContent = "json=" + serializer.Serialize(question);
+                byte[] byteArray = Encoding.UTF8.GetBytes(formContent);
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.ContentLength = byteArray.Length;
 
-            byte[] byteArray = Encoding.UTF8.GetBytes(formContent);
-            request.ContentType = "application/x-www-form-urlencoded";
-            request.ContentLength = byteArray.Length;
+                Stream stream = request.GetRequestStream();
+                stream.Write(byteArray, 0, byteArray.Length);
+                stream.Close();
 
-            Stream dataStream = request.GetRequestStream();
-            dataStream.Write(byteArray, 0, byteArray.Length);
-            dataStream.Close();
-
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            dataStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(dataStream);
-
-            reader.Close();
-            dataStream.Close();
-            response.Close();
-
-            if (response.StatusCode.Equals(HttpStatusCode.OK)) {
-                return true;
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                HttpStatusCode statusCode = response.StatusCode;
+                if (statusCode.Equals(HttpStatusCode.OK))
+                {
+                    stream = response.GetResponseStream();
+                    StreamReader sr = new StreamReader(stream);
+                    String json = sr.ReadToEnd();
+                    return serializer.Deserialize<Question>(json);
+                }
+                return null;
             }
-            return false;
+            catch
+            {
+                return null;
+            }
 
             //UTF8Encoding encoding = new UTF8Encoding();
             //String postData = "json=" + serializer.Serialize(question);

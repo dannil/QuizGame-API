@@ -8,6 +8,16 @@ namespace QuizGameAPI
     {
         private String answer;
 
+        public AnswerHolder()
+        {
+
+        }
+
+        public AnswerHolder(String answer)
+        {
+            this.answer = answer;
+        }
+
         public String Answer
         {
             get { return answer; }

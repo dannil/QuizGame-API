@@ -12,10 +12,22 @@ namespace QuizGameAPI
         private List<CategoryHolder> categories;
         private List<AnswerHolder> answers;
 
+        public Question()
+        {
+
+        }
+
+        public Question(String title, List<CategoryHolder> categories, List<AnswerHolder> answers)
+        {
+            this.title = title;
+            this.categories = categories;
+            this.answers = answers;
+        }
+
         public int ID
         {
             get { return id; }
-            private set { }
+            set { id = value; }
         }
 
         public String Title
