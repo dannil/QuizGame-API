@@ -52,14 +52,11 @@ namespace QuizGameAPI
                     String json = sr.ReadToEnd();
                     return serializer.Deserialize<List<CategoryHolder>>(json);
                 }
-                else
-                {
-                    return null;
-                }
-            }
-            catch
-            {
                 return null;
+            }
+            catch (Exception e)
+            {
+                throw e;
             }
         }
 
@@ -85,14 +82,11 @@ namespace QuizGameAPI
                     String json = sr.ReadToEnd();
                     return serializer.Deserialize<Question>(json);
                 }
-                else
-                {
-                    return null;
-                }
-            }
-            catch
-            {
                 return null;
+            }
+            catch (Exception e)
+            {
+                throw e;
             }
         }
 
@@ -115,14 +109,11 @@ namespace QuizGameAPI
                     String json = sr.ReadToEnd();
                     return serializer.Deserialize<List<Question>>(json);
                 }
-                else
-                {
-                    return null;
-                }
-            }
-            catch
-            {
                 return null;
+            }
+            catch (Exception e)
+            {
+                throw e;
             }
         }
 
@@ -146,14 +137,11 @@ namespace QuizGameAPI
                     String json = sr.ReadToEnd();
                     return serializer.Deserialize<List<Question>>(json);
                 }
-                else
-                {
-                    return null;
-                }
-            }
-            catch
-            {
                 return null;
+            }
+            catch (Exception e)
+            {
+                throw e;
             }
         }
 
@@ -189,39 +177,10 @@ namespace QuizGameAPI
                 }
                 return null;
             }
-            catch
+            catch (Exception e)
             {
-                return null;
+                throw e;
             }
-
-            //UTF8Encoding encoding = new UTF8Encoding();
-            //String postData = "json=" + serializer.Serialize(question);
-            //byte[] data = encoding.GetBytes(postData);
-
-            //HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url + "/question");
-            //request.Method = "POST";
-            //request.ContentType = "application/x-www-form-urlencoded";
-
-            //request.ContentLength = data.Length;
-            //Stream newStream = request.GetRequestStream();
-
-            //// Send the data
-            //newStream.Write(data, 0, data.Length);
-            //newStream.Close();
-
-            //using (StreamWriter streamWriter = new StreamWriter(request.GetRequestStream()))
-            //{
-            //    String json = serializer.Serialize(question);
-            //    streamWriter.Write(json);
-            //    streamWriter.Flush();
-            //    streamWriter.Close();
-
-            //    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            //    using (var streamReader = new StreamReader(response.GetResponseStream()))
-            //    {
-            //        String result = streamReader.ReadToEnd();
-            //    }
-            //}
         }
 
         /// <summary>
@@ -241,14 +200,11 @@ namespace QuizGameAPI
                 {
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
-            }
-            catch
-            {
                 return false;
+            }
+            catch (Exception e)
+            {
+                throw e;
             }
         }
 
