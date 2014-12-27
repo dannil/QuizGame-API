@@ -50,7 +50,8 @@ namespace QuizGameAPI
 
         public override string ToString()
         {
-            return "id={" + id + "};title={" + title + "};categories={" + String.Join(",", categories) + "};answers={" + String.Join(",", answers) + "};";
+            return "Question={id={" + id + "};title={" + title + "};categories={" + 
+                String.Join(",", categories) + "};answers={" + String.Join(",", answers) + "};};";
         }
 
         public override bool Equals(object obj)
