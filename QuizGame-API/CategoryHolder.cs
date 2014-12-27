@@ -25,5 +25,10 @@ namespace QuizGameAPI
             set { category = value; }
         }
 
+        public override string ToString()
+        {
+            return "category=" + category;
+        }
+
     }
 }

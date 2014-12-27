@@ -23,5 +23,10 @@ namespace QuizGameAPI
             get { return answer; }
             set { answer = value; }
         }
+
+        public override string ToString()
+        {
+            return "answer=" + answer;
+        }
     }
 }
