@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -39,25 +40,13 @@ namespace QuizGameAPI
         /// <returns>A list of categories</returns>
         public List<CategoryHolder> GetCategories()
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url + "/category");
-            request.Method = "GET";
-            try
-            {
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                HttpStatusCode statusCode = response.StatusCode;
-                if (statusCode.Equals(HttpStatusCode.OK))
-                {
-                    Stream stream = response.GetResponseStream();
-                    StreamReader sr = new StreamReader(stream);
-                    String json = sr.ReadToEnd();
-                    return serializer.Deserialize<List<CategoryHolder>>(json);
-                }
-                return null;
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            RestClient client = new RestClient(this.url);
+
+            RestRequest request = new RestRequest("category", Method.GET);
+
+            // execute the request
+            RestResponse<List<CategoryHolder>> response = (RestResponse<List<CategoryHolder>>)client.Execute<List<CategoryHolder>>(request);
+            return response.Data;
         }
 
         // ----- QUESTIONS ----- //
@@ -69,25 +58,14 @@ namespace QuizGameAPI
         /// <returns>A question with the specified id</returns>
         public Question GetQuestion(int id)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url + "/question/" + id);
-            request.Method = "GET";
-            try
-            {
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                HttpStatusCode statusCode = response.StatusCode;
-                if (statusCode.Equals(HttpStatusCode.OK))
-                {
-                    Stream stream = response.GetResponseStream();
-                    StreamReader sr = new StreamReader(stream);
-                    String json = sr.ReadToEnd();
-                    return serializer.Deserialize<Question>(json);
-                }
-                return null;
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            RestClient client = new RestClient(this.url);
+
+            RestRequest request = new RestRequest("question/{id}", Method.GET);
+            request.AddUrlSegment("id", id.ToString());
+
+            // execute the request
+            RestResponse<Question> response = (RestResponse<Question>)client.Execute<Question>(request);
+            return response.Data;
         }
 
         /// <summary>
@@ -96,25 +74,13 @@ namespace QuizGameAPI
         /// <returns>A list of questions</returns>
         public List<Question> GetQuestions()
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url + "/question");
-            request.Method = "GET";
-            try
-            {
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                HttpStatusCode statusCode = response.StatusCode;
-                if (statusCode.Equals(HttpStatusCode.OK))
-                {
-                    Stream stream = response.GetResponseStream();
-                    StreamReader sr = new StreamReader(stream);
-                    String json = sr.ReadToEnd();
-                    return serializer.Deserialize<List<Question>>(json);
-                }
-                return null;
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            RestClient client = new RestClient(this.url);
+
+            RestRequest request = new RestRequest("question", Method.GET);
+
+            // execute the request
+            RestResponse<List<Question>> response = (RestResponse<List<Question>>)client.Execute<List<Question>>(request);
+            return response.Data;
         }
 
         /// <summary>
@@ -124,25 +90,14 @@ namespace QuizGameAPI
         /// <returns>A list of questions</returns>
         public List<Question> GetQuestionsByCategory(String category)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url + "/question/category/" + category);
-            request.Method = "GET";
-            try
-            {
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                HttpStatusCode statusCode = response.StatusCode;
-                if (statusCode.Equals(HttpStatusCode.OK))
-                {
-                    Stream stream = response.GetResponseStream();
-                    StreamReader sr = new StreamReader(stream);
-                    String json = sr.ReadToEnd();
-                    return serializer.Deserialize<List<Question>>(json);
-                }
-                return null;
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            RestClient client = new RestClient(this.url);
+
+            RestRequest request = new RestRequest("question/category/{category}", Method.GET);
+            request.AddUrlSegment("category", category);
+
+            // execute the request
+            RestResponse<List<Question>> response = (RestResponse<List<Question>>)client.Execute<List<Question>>(request);
+            return response.Data;
         }
 
         /// <summary>
@@ -152,35 +107,28 @@ namespace QuizGameAPI
         /// <returns>A question with new values set by the back-end system</returns>
         public Question AddQuestion(Question question)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url + "/question");
-            request.Method = "POST";
-            try
-            {
-                String formContent = "json=" + serializer.Serialize(question);
+            RestClient client = new RestClient(this.url);
 
-                byte[] byteArray = Encoding.UTF8.GetBytes(formContent);
-                request.ContentType = "application/x-www-form-urlencoded";
-                request.ContentLength = byteArray.Length;
+            RestRequest request = new RestRequest("question", Method.POST);
+            request.AddParameter("json", serializer.Serialize(question)); // adds to POST or URL querystring based on Method
 
-                Stream stream = request.GetRequestStream();
-                stream.Write(byteArray, 0, byteArray.Length);
-                stream.Close();
+            // execute the request
+            RestResponse<Question> response = (RestResponse<Question>)client.Execute<Question>(request);
+            return response.Data;
+        }
 
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                HttpStatusCode statusCode = response.StatusCode;
-                if (statusCode.Equals(HttpStatusCode.OK))
-                {
-                    stream = response.GetResponseStream();
-                    StreamReader sr = new StreamReader(stream);
-                    String json = sr.ReadToEnd();
-                    return serializer.Deserialize<Question>(json);
-                }
-                return null;
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+        public Question EditQuestion(int id, Question question)
+        {
+            //var client = new RestClient(this.url);
+
+            //var request = new RestRequest("question/" + id, Method.PUT);
+            //request.AddParameter("json", serializer.Serialize(question)); // adds to POST or URL querystring based on Method
+
+            //// execute the request
+            //RestResponse response = (RestResponse)client.Execute(request);
+            //var content = response.Content; // raw content as string
+
+            return null;
         }
 
         /// <summary>
@@ -190,22 +138,14 @@ namespace QuizGameAPI
         /// <returns>True if a question with that id exists and is successfully deleted, otherwise false</returns>
         public Boolean DeleteQuestion(int id)
         {
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url + "/question/" + id);
-            request.Method = "DELETE";
-            try
-            {
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                HttpStatusCode statusCode = response.StatusCode;
-                if (statusCode.Equals(HttpStatusCode.OK))
-                {
-                    return true;
-                }
-                return false;
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            RestClient client = new RestClient(this.url);
+
+            RestRequest request = new RestRequest("question/{id}", Method.DELETE);
+            request.AddUrlSegment("id", id.ToString());
+
+            // execute the request
+            RestResponse<Question> response = (RestResponse<Question>)client.Execute<Question>(request);
+            return (response.StatusCode.Equals(HttpStatusCode.OK) ? true : false);
         }
 
         // ----- ANSWERS ----- //
