@@ -11,15 +11,28 @@ namespace QuizGame_API_Test
         public static void Main(String[] args)
         {
             API api = new API("");
-            Question question = api.GetQuestion(0);
+            Question question = api.GetQuestion(1);
             List<Question> questions1 = api.GetQuestions();
-            List<Question> questions2 = api.GetQuestionsByCategory("algebra");
+            List<Question> questions2 = api.GetQuestionsByCategory("basic");
             List<CategoryHolder> categories1 = api.GetCategories();
-            Boolean success = api.DeleteQuestion(0);
+            Boolean success = api.DeleteQuestion(2);
 
-            Question question3 = new Question();
-            question3.Title = "Testing post";
-            api.AddQuestion(question3);
+            List<CategoryHolder> categories = new List<CategoryHolder>();
+            categories.Add(new CategoryHolder("basic"));
+
+            List<AnswerHolder> answers = new List<AnswerHolder>();
+            answers.Add(new AnswerHolder("24"));
+            answers.Add(new AnswerHolder("26"));
+            answers.Add(new AnswerHolder("28"));
+            answers.Add(new AnswerHolder("30"));
+            answers.Add(new AnswerHolder("32"));
+
+            Question question3 = new Question("solve 4 * 7", categories, answers);
+            Question result = api.AddQuestion(question3);
+            question3.ID = result.ID;
+
+            System.Diagnostics.Debug.WriteLine(question3);
+            System.Diagnostics.Debug.WriteLine(result);
         }
     }
 }
