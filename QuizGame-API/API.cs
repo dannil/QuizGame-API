@@ -15,12 +15,12 @@ namespace QuizGameAPI
         private String url;
         private String apiKey;
 
-        private JavaScriptSerializer serializer;
+        private JsonSerializer serializer;
 
         private API()
         {
             this.url = "http://localhost:8080/quizgame-backend";
-            this.serializer = new JavaScriptSerializer();
+            this.serializer = new JsonSerializer();
         }
 
         /// <summary>
