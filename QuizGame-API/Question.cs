@@ -9,15 +9,15 @@ namespace QuizGameAPI
         private int id;
         private String title;
 
-        private List<CategoryHolder> categories;
-        private List<AnswerHolder> answers;
+        private List<String> categories;
+        private List<String> answers;
 
         public Question()
         {
 
         }
 
-        public Question(String title, List<CategoryHolder> categories, List<AnswerHolder> answers)
+        public Question(String title, List<String> categories, List<String> answers)
         {
             this.title = title;
             this.categories = categories;
@@ -36,13 +36,13 @@ namespace QuizGameAPI
             set { title = value; }
         }
 
-        public List<CategoryHolder> Categories
+        public List<String> Categories
         {
             get { return categories; }
             set { categories = value; }
         }
 
-        public List<AnswerHolder> Answers
+        public List<String> Answers
         {
             get { return answers; }
             set { answers = value; }

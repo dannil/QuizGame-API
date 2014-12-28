@@ -14,18 +14,18 @@ namespace QuizGame_API_Test
             Question question = api.GetQuestion(1);
             List<Question> questions1 = api.GetQuestions();
             List<Question> questions2 = api.GetQuestionsByCategory("basic");
-            List<CategoryHolder> categories1 = api.GetCategories();
+            List<String> categories1 = api.GetCategories();
             Boolean success = api.DeleteQuestion(2);
 
-            List<CategoryHolder> categories = new List<CategoryHolder>();
-            categories.Add(new CategoryHolder("basic"));
+            List<String> categories = new List<String>();
+            categories.Add("basic");
 
-            List<AnswerHolder> answers = new List<AnswerHolder>();
-            answers.Add(new AnswerHolder("24"));
-            answers.Add(new AnswerHolder("26"));
-            answers.Add(new AnswerHolder("28"));
-            answers.Add(new AnswerHolder("30"));
-            answers.Add(new AnswerHolder("32"));
+            List<String> answers = new List<String>();
+            answers.Add("24");
+            answers.Add("26");
+            answers.Add("28");
+            answers.Add("30");
+            answers.Add("32");
 
             Question question3 = new Question("solve 4 * 7", categories, answers);
             Question result = api.AddQuestion(question3);

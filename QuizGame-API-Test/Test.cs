@@ -14,7 +14,7 @@ namespace QuizGame_API_Test
         public void GetCategories()
         {
             API api = new API("");
-            List<CategoryHolder> categories = api.GetCategories();
+            List<String> categories = api.GetCategories();
             Assert.AreNotEqual(categories, null);
         }
 
@@ -49,24 +49,24 @@ namespace QuizGame_API_Test
         {
             API api = new API("");
 
-            List<CategoryHolder> categories = new List<CategoryHolder>();
-            categories.Add(new CategoryHolder("basic"));
+            List<String> categories = new List<String>();
+            categories.Add("basic");
 
-            List<AnswerHolder> answers = new List<AnswerHolder>();
-            answers.Add(new AnswerHolder("24"));
-            answers.Add(new AnswerHolder("26"));
-            answers.Add(new AnswerHolder("28"));
-            answers.Add(new AnswerHolder("30"));
-            answers.Add(new AnswerHolder("32"));
+            List<String> answers = new List<String>();
+            answers.Add("24");
+            answers.Add("26");
+            answers.Add("28");
+            answers.Add("30");
+            answers.Add("32");
 
-            Question question = new Question("solve 4 * 7", categories, answers);
+            Question question = new Question("Solve 4 * 7", categories, answers);
             Question result = api.AddQuestion(question);
 
             // This row is needed as the supplied question shouldn't have an ID explicitly specified
             // and therefore we assign it the ID of the result question
             question.ID = result.ID;
 
-            Assert.AreEqual(question.Equals(result), true);
+            Assert.AreNotEqual(result, null);
         }
 
         [TestCase]

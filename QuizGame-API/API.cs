@@ -36,14 +36,14 @@ namespace QuizGameAPI
         /// Get a list of all categories.
         /// </summary>
         /// <returns>A list of categories</returns>
-        public List<CategoryHolder> GetCategories()
+        public List<String> GetCategories()
         {
             RestClient client = new RestClient(this.url);
 
             RestRequest request = new RestRequest("category", Method.GET);
 
             // execute the request
-            RestResponse<List<CategoryHolder>> response = (RestResponse<List<CategoryHolder>>)client.Execute<List<CategoryHolder>>(request);
+            RestResponse<List<String>> response = (RestResponse<List<String>>)client.Execute<List<String>>(request);
             return response.Data;
         }
 
