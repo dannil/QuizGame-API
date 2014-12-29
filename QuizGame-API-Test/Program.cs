@@ -27,12 +27,31 @@ namespace QuizGame_API_Test
             answers.Add("30");
             answers.Add("32");
 
-            Question question3 = new Question("solve 4 * 7", categories, answers);
-            Question result = api.AddQuestion(question3);
-            question3.ID = result.ID;
+            Question question2 = new Question("solve 4 * 7", categories, answers);
+            Question result2 = api.AddQuestion(question);
+            question2.ID = result2.ID;
 
-            System.Diagnostics.Debug.WriteLine(question3);
-            System.Diagnostics.Debug.WriteLine(result);
+            System.Diagnostics.Debug.WriteLine(question);
+            System.Diagnostics.Debug.WriteLine(result2);
+
+            List<String> categories3 = new List<String>();
+            categories3.Add("basic");
+
+            List<String> answers3 = new List<String>();
+            answers3.Add("80");
+            answers3.Add("35");
+            answers3.Add("53");
+
+            Question question4 = new Question("Solve 3 + 5 * 10", categories3, answers3);
+            Question result3 = api.AddQuestion(question4);
+
+            List<String> answers4 = new List<String>();
+            answers4.Add("80");
+            answers4.Add("53");
+
+            Question question5 = new Question(question4.Title, question4.Categories, answers4);
+
+            Question result4 = api.EditQuestion(result3.ID, question5);
         }
     }
 }

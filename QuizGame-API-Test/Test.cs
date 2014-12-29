@@ -62,10 +62,6 @@ namespace QuizGame_API_Test
             Question question = new Question("Solve 4 * 7", categories, answers);
             Question result = api.AddQuestion(question);
 
-            // This row is needed as the supplied question shouldn't have an ID explicitly specified
-            // and therefore we assign it the ID of the result question
-            question.ID = result.ID;
-
             Assert.AreNotEqual(result, null);
         }
 
@@ -73,16 +69,39 @@ namespace QuizGame_API_Test
         public void EditQuestion()
         {
             API api = new API("");
-            Question question = new Question("test", null, null);
-            Question result = api.EditQuestion(1, question);
-            Assert.AreEqual(result.Title, "test");
+
+            List<String> categories = new List<String>();
+            categories.Add("basic");
+
+            List<String> answers = new List<String>();
+            answers.Add("80");
+            answers.Add("35");
+            answers.Add("53");
+
+            Question question = new Question("Solve 3 + 5 * 10", categories, answers);
+            Question result = api.AddQuestion(question);
+
+            List<String> answers2 = new List<String>();
+            answers2.Add("80");
+            answers2.Add("53");
+
+            Question question2 = new Question(question.Title, question.Categories, answers2);
+
+            Question result2 = api.EditQuestion(result.ID, question2);
+
+            Assert.AreNotEqual(result.Answers, result2.Answers);
         }
 
         [TestCase]
         public void DeleteQuestion()
         {
             API api = new API("");
-            Boolean success = api.DeleteQuestion(2);
+
+            Question question = new Question("test", null, null);
+            Question result = api.AddQuestion(question);
+
+            Boolean success = api.DeleteQuestion(result.ID);
+
             Assert.AreEqual(success, true);
         }
     }
