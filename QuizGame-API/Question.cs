@@ -63,7 +63,7 @@ namespace QuizGameAPI
 
         public void RemoveCategory(String category)
         {
-            if (!category.Equals(String.Empty) && this.categories.Contains(category))
+            if (!category.Equals(String.Empty))
             {
                 this.categories.Remove(category);
             }
@@ -79,7 +79,7 @@ namespace QuizGameAPI
 
         public void RemoveAnswer(String answer)
         {
-            if (!answer.Equals(String.Empty) && this.answers.Contains(answer))
+            if (!answer.Equals(String.Empty))
             {
                 this.answers.Remove(answer);
             }
