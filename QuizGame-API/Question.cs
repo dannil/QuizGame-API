@@ -55,7 +55,7 @@ namespace QuizGameAPI
 
         public void AddCategory(String category)
         {
-            if (!category.Equals(String.Empty) && this.categories != null)
+            if (!category.Equals(String.Empty))
             {
                 this.categories.Add(category);
             }
@@ -63,7 +63,7 @@ namespace QuizGameAPI
 
         public void RemoveCategory(String category)
         {
-            if (!category.Equals(String.Empty) && this.categories != null && this.categories.Contains(category))
+            if (!category.Equals(String.Empty) && this.categories.Contains(category))
             {
                 this.categories.Remove(category);
             }
@@ -71,7 +71,7 @@ namespace QuizGameAPI
 
         public void AddAnswer(String answer)
         {
-            if (!answer.Equals(String.Empty) && this.answers != null)
+            if (!answer.Equals(String.Empty))
             {
                 this.answers.Add(answer);
             }
@@ -79,7 +79,7 @@ namespace QuizGameAPI
 
         public void RemoveAnswer(String answer)
         {
-            if (!answer.Equals(String.Empty) && this.answers != null && this.answers.Contains(answer))
+            if (!answer.Equals(String.Empty) && this.answers.Contains(answer))
             {
                 this.answers.Remove(answer);
             }
@@ -87,8 +87,8 @@ namespace QuizGameAPI
 
         public override string ToString()
         {
-            return "Question={id={" + id + "};title={" + title + "};categories={" + 
-                String.Join(",", categories) + "};answers={" + String.Join(",", answers) + "};};";
+            return "Question={ id={" + id + "}, title={" + title + "}, categories={" + 
+                String.Join(",", categories) + "}, answers={" + String.Join(",", answers) + "} }";
         }
 
     }
