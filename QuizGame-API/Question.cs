@@ -61,11 +61,27 @@ namespace QuizGameAPI
             }
         }
 
+        public void AddCategories(params String[] categories)
+        {
+            foreach (String s in categories)
+            {
+                this.AddCategory(s);
+            }
+        }
+
         public void RemoveCategory(String category)
         {
             if (!category.Equals(String.Empty))
             {
                 this.categories.Remove(category);
+            }
+        }
+
+        public void RemoveCategories(params String[] categories)
+        {
+            foreach (String s in categories)
+            {
+                this.RemoveCategory(s);
             }
         }
 
@@ -77,11 +93,27 @@ namespace QuizGameAPI
             }
         }
 
+        public void AddAnswers(params String[] answers)
+        {
+            foreach (String s in answers)
+            {
+                this.AddAnswer(s);
+            }
+        }
+
         public void RemoveAnswer(String answer)
         {
             if (!answer.Equals(String.Empty))
             {
                 this.answers.Remove(answer);
+            }
+        }
+
+        public void RemoveAnswers(params String[] answers)
+        {
+            foreach (String s in answers)
+            {
+                this.RemoveAnswer(s);
             }
         }
 

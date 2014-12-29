@@ -19,11 +19,7 @@ namespace QuizGame_API_Test
 
             Question question2 = new Question("Solve 4 * 7");
             question2.AddCategory("basic");
-            question2.AddAnswer("24");
-            question2.AddAnswer("26");
-            question2.AddAnswer("28");
-            question2.AddAnswer("30");
-            question2.AddAnswer("32");
+            question2.AddAnswers("24", "26", "28", "30", "32");
             question2.RemoveAnswer("28");
 
             Question result2 = api.AddQuestion(question2);

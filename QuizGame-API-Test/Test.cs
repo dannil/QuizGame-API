@@ -51,11 +51,7 @@ namespace QuizGame_API_Test
 
             Question question = new Question("Solve 4 * 7");
             question.AddCategory("basic");
-            question.AddAnswer("24");
-            question.AddAnswer("26");
-            question.AddAnswer("28");
-            question.AddAnswer("30");
-            question.AddAnswer("32");
+            question.AddAnswers("24", "26", "28", "30", "32");
 
             Question result = api.AddQuestion(question);
 
@@ -69,9 +65,7 @@ namespace QuizGame_API_Test
 
             Question question = new Question("Solve 3 + 5 * 10");
             question.AddCategory("basic");
-            question.AddAnswer("80");
-            question.AddAnswer("53");
-            question.AddAnswer("35");
+            question.AddAnswers("80", "53", "35");
 
             Question result = api.AddQuestion(question);
 
