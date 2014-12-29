@@ -111,6 +111,7 @@ namespace QuizGameAPI
             // it to work with PUT both on the API and the backend side is a real hassle
             RestRequest request = new RestRequest("question", Method.POST);
             request.AddParameter("json", serializer.Serialize(question));
+            String json = serializer.Serialize(question);
 
             // execute the request
             RestResponse<Question> response = (RestResponse<Question>)client.Execute<Question>(request);

@@ -17,21 +17,19 @@ namespace QuizGame_API_Test
             List<String> categories1 = api.GetCategories();
             Boolean success = api.DeleteQuestion(2);
 
-            List<String> categories = new List<String>();
-            categories.Add("basic");
+            Question question2 = new Question("Solve 4 * 7");
+            question2.AddCategory("basic");
+            question2.AddAnswer("24");
+            question2.AddAnswer("26");
+            question2.AddAnswer("28");
+            question2.AddAnswer("30");
+            question2.AddAnswer("32");
+            question2.RemoveAnswer("28");
 
-            List<String> answers = new List<String>();
-            answers.Add("24");
-            answers.Add("26");
-            answers.Add("28");
-            answers.Add("30");
-            answers.Add("32");
-
-            Question question2 = new Question("solve 4 * 7", categories, answers);
-            Question result2 = api.AddQuestion(question);
+            Question result2 = api.AddQuestion(question2);
             question2.ID = result2.ID;
 
-            System.Diagnostics.Debug.WriteLine(question);
+            System.Diagnostics.Debug.WriteLine(question2);
             System.Diagnostics.Debug.WriteLine(result2);
 
             List<String> categories3 = new List<String>();

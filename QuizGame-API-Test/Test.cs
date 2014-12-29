@@ -49,17 +49,14 @@ namespace QuizGame_API_Test
         {
             API api = new API("");
 
-            List<String> categories = new List<String>();
-            categories.Add("basic");
+            Question question = new Question("Solve 4 * 7");
+            question.AddCategory("basic");
+            question.AddAnswer("24");
+            question.AddAnswer("26");
+            question.AddAnswer("28");
+            question.AddAnswer("30");
+            question.AddAnswer("32");
 
-            List<String> answers = new List<String>();
-            answers.Add("24");
-            answers.Add("26");
-            answers.Add("28");
-            answers.Add("30");
-            answers.Add("32");
-
-            Question question = new Question("Solve 4 * 7", categories, answers);
             Question result = api.AddQuestion(question);
 
             Assert.AreNotEqual(result, null);
@@ -70,24 +67,17 @@ namespace QuizGame_API_Test
         {
             API api = new API("");
 
-            List<String> categories = new List<String>();
-            categories.Add("basic");
+            Question question = new Question("Solve 3 + 5 * 10");
+            question.AddCategory("basic");
+            question.AddAnswer("80");
+            question.AddAnswer("53");
+            question.AddAnswer("35");
 
-            List<String> answers = new List<String>();
-            answers.Add("80");
-            answers.Add("35");
-            answers.Add("53");
-
-            Question question = new Question("Solve 3 + 5 * 10", categories, answers);
             Question result = api.AddQuestion(question);
 
-            List<String> answers2 = new List<String>();
-            answers2.Add("80");
-            answers2.Add("53");
+            question.RemoveAnswer("80");
 
-            Question question2 = new Question(question.Title, question.Categories, answers2);
-
-            Question result2 = api.EditQuestion(result.ID, question2);
+            Question result2 = api.EditQuestion(result.ID, question);
 
             Assert.AreNotEqual(result.Answers, result2.Answers);
         }
