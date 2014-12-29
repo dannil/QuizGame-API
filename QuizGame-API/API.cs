@@ -107,8 +107,10 @@ namespace QuizGameAPI
         {
             RestClient client = new RestClient(this.url);
 
+            // This should really be PUT instead of POST considering our pattern, but getting 
+            // it to work with PUT both on the API and the backend side is a real hassle
             RestRequest request = new RestRequest("question", Method.POST);
-            request.AddParameter("json", serializer.Serialize(question)); // adds to POST or URL querystring based on Method
+            request.AddParameter("json", serializer.Serialize(question));
 
             // execute the request
             RestResponse<Question> response = (RestResponse<Question>)client.Execute<Question>(request);
@@ -117,16 +119,14 @@ namespace QuizGameAPI
 
         public Question EditQuestion(int id, Question question)
         {
-            //var client = new RestClient(this.url);
+            RestClient client = new RestClient(this.url);
 
-            //var request = new RestRequest("question/" + id, Method.PUT);
-            //request.AddParameter("json", serializer.Serialize(question)); // adds to POST or URL querystring based on Method
+            RestRequest request = new RestRequest("question/" + id, Method.POST);
+            request.AddParameter("json", serializer.Serialize(question));
 
-            //// execute the request
-            //RestResponse response = (RestResponse)client.Execute(request);
-            //var content = response.Content; // raw content as string
-
-            return null;
+            // execute the request
+            RestResponse<Question> response = (RestResponse<Question>)client.Execute<Question>(request);
+            return response.Data;
         }
 
         /// <summary>
@@ -148,22 +148,22 @@ namespace QuizGameAPI
 
         // ----- ANSWERS ----- //
 
-        public List<AnswerHolder> GetAnswers()
+        public List<String> GetAnswers()
         {
             return null;
         }
 
-        public List<AnswerHolder> GetAnswersByCategory(String category)
+        public List<String> GetAnswersByCategory(String category)
         {
             return null;
         }
 
-        public List<AnswerHolder> GetAnswersByQuestionID(int id)
+        public List<String> GetAnswersByQuestionID(int id)
         {
             return null;
         }
 
-        public List<AnswerHolder> GetAnswersByQuestion(Question question)
+        public List<String> GetAnswersByQuestion(Question question)
         {
             return this.GetAnswersByQuestionID(question.ID);
         }
