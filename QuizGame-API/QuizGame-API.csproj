@@ -45,8 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnswerHolder.cs" />
-    <Compile Include="CategoryHolder.cs" />
     <Compile Include="JsonSerializer.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="API.cs" />
