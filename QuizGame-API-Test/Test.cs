@@ -10,11 +10,14 @@ namespace QuizGame_API_Test
     {
 
         // ----- CATEGORIES ----- //
+
         [TestCase]
         public void GetCategories()
         {
             API api = new API("");
+            
             List<String> categories = api.GetCategories();
+            
             Assert.AreNotEqual(categories, null);
         }
 
@@ -24,7 +27,9 @@ namespace QuizGame_API_Test
         public void GetQuestionByID()
         {
             API api = new API("");
+            
             Question question = api.GetQuestion(1);
+            
             Assert.AreNotEqual(question, null);
         }
 
@@ -32,7 +37,9 @@ namespace QuizGame_API_Test
         public void GetQuestions()
         {
             API api = new API("");
+            
             List<Question> questions = api.GetQuestions();
+            
             Assert.AreNotEqual(questions, null);
         }
 
@@ -40,7 +47,9 @@ namespace QuizGame_API_Test
         public void GetQuestionsByCategory()
         {
             API api = new API("");
+            
             List<Question> questions = api.GetQuestionsByCategory("basic");
+            
             Assert.AreNotEqual(questions, null);
         }
 
