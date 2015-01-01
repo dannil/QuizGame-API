@@ -61,67 +61,47 @@ namespace QuizGameAPI
             set { correct = value; }
         }
 
-        public void AddCategory(String category)
-        {
-            if (!category.Equals(String.Empty))
-            {
-                this.categories.Add(category);
-            }
-        }
-
         public void AddCategories(params String[] categories)
         {
-            foreach (String s in categories)
+            foreach (String category in categories)
             {
-                this.AddCategory(s);
-            }
-        }
-
-        public void RemoveCategory(String category)
-        {
-            if (!category.Equals(String.Empty))
-            {
-                this.categories.Remove(category);
+                if (!category.Equals(String.Empty))
+                {
+                    this.categories.Add(category);
+                }
             }
         }
 
         public void RemoveCategories(params String[] categories)
         {
-            foreach (String s in categories)
+            foreach (String category in categories)
             {
-                this.RemoveCategory(s);
-            }
-        }
-
-        public void AddAnswer(String answer)
-        {
-            if (!answer.Equals(String.Empty))
-            {
-                this.answers.Add(answer);
+                if (!category.Equals(String.Empty))
+                {
+                    this.categories.Remove(category);
+                }
             }
         }
 
         public void AddAnswers(params String[] answers)
         {
-            foreach (String s in answers)
+            foreach (String answer in answers)
             {
-                this.AddAnswer(s);
-            }
-        }
-
-        public void RemoveAnswer(String answer)
-        {
-            if (!answer.Equals(String.Empty))
-            {
-                this.answers.Remove(answer);
+                if (!answer.Equals(String.Empty))
+                {
+                    this.answers.Add(answer);
+                }
             }
         }
 
         public void RemoveAnswers(params String[] answers)
         {
-            foreach (String s in answers)
+            foreach (String answer in answers)
             {
-                this.RemoveAnswer(s);
+                if (!answer.Equals(String.Empty))
+                {
+                    this.answers.Remove(answer);
+                }
             }
         }
 
