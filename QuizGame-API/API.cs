@@ -160,12 +160,18 @@ namespace QuizGameAPI
 
         public List<String> GetAnswersByQuestionID(int id)
         {
-            return null;
+            RestClient client = new RestClient(this.url);
+
+            RestRequest request = new RestRequest("question/{id}/answer", Method.GET);
+            request.AddUrlSegment("id", id.ToString());
+
+            RestResponse<List<String>> response = (RestResponse<List<String>>)client.Execute<List<String>>(request);
+            return response.Data;
         }
 
-        public List<String> GetAnswersByQuestion(Question question)
-        {
-            return this.GetAnswersByQuestionID(question.ID);
-        }
+        //public List<String> GetAnswersByQuestion(Question question)
+        //{
+        //    return this.GetAnswersByQuestionID(question.ID);
+        //}
     }
 }
