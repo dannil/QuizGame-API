@@ -12,6 +12,8 @@ namespace QuizGameAPI
         private List<String> categories;
         private List<String> answers;
 
+        private String correct;
+
         public Question()
         {
             this.categories = new List<String>();
@@ -51,6 +53,12 @@ namespace QuizGameAPI
         {
             get { return answers; }
             set { answers = value; }
+        }
+
+        public String Correct
+        {
+            get { return correct; }
+            set { correct = value; }
         }
 
         public void AddCategory(String category)
