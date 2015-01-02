@@ -10,7 +10,10 @@ namespace QuizGame_API_Test
     {
         public static void Main(String[] args)
         {
-            API api = new API("");
+            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
+
+            List<String> answers = api.GetAnswersByQuestionID(1);
+
             Question question = api.GetQuestion(1);
             List<Question> questions1 = api.GetQuestions();
             List<Question> questions2 = api.GetQuestionsByCategory("basic");
@@ -18,9 +21,9 @@ namespace QuizGame_API_Test
             Boolean success = api.DeleteQuestion(2);
 
             Question question2 = new Question("Solve 4 * 7");
-            question2.AddCategory("basic");
+            question2.AddCategories("basic");
             question2.AddAnswers("24", "26", "28", "30", "32");
-            question2.RemoveAnswer("28");
+            question2.RemoveAnswers("28");
 
             Question result2 = api.AddQuestion(question2);
             question2.ID = result2.ID;

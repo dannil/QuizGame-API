@@ -11,7 +11,9 @@ namespace QuizGameAPI
     {
         // Instance variables
         private String url;
-        private String apiKey;
+
+        private String username;
+        private String token;
 
         private JsonSerializer serializer;
 
@@ -24,10 +26,12 @@ namespace QuizGameAPI
         /// <summary>
         /// Overloaded constructor
         /// </summary>
-        /// <param name="apiKey">The API key to use</param>
-        public API(String apiKey) : this()
+        /// <param name="username">The username to use</param>
+        /// <param name="token">The token key to use</param>
+        public API(String username, String token) : this()
         {
-            this.apiKey = apiKey;
+            this.username = username;
+            this.token = token;
         }
 
         // ----- CATEGORIES ----- //
@@ -39,6 +43,7 @@ namespace QuizGameAPI
         public List<String> GetCategories()
         {
             RestClient client = new RestClient(this.url);
+            client.Authenticator = new SimpleAuthenticator("username", this.username, "token", this.token);
 
             RestRequest request = new RestRequest("category", Method.GET);
 
@@ -57,6 +62,7 @@ namespace QuizGameAPI
         public Question GetQuestion(int id)
         {
             RestClient client = new RestClient(this.url);
+            client.Authenticator = new SimpleAuthenticator("username", this.username, "token", this.token);
 
             RestRequest request = new RestRequest("question/{id}", Method.GET);
             request.AddUrlSegment("id", id.ToString());
@@ -73,6 +79,7 @@ namespace QuizGameAPI
         public List<Question> GetQuestions()
         {
             RestClient client = new RestClient(this.url);
+            client.Authenticator = new SimpleAuthenticator("username", this.username, "token", this.token);
 
             RestRequest request = new RestRequest("question", Method.GET);
 
@@ -89,6 +96,7 @@ namespace QuizGameAPI
         public List<Question> GetQuestionsByCategory(String category)
         {
             RestClient client = new RestClient(this.url);
+            client.Authenticator = new SimpleAuthenticator("username", this.username, "token", this.token);
 
             RestRequest request = new RestRequest("question/category/{category}", Method.GET);
             request.AddUrlSegment("category", category);
@@ -106,6 +114,7 @@ namespace QuizGameAPI
         public Question AddQuestion(Question question)
         {
             RestClient client = new RestClient(this.url);
+            client.Authenticator = new SimpleAuthenticator("username", this.username, "token", this.token);
 
             // This should really be PUT instead of POST considering our pattern, but getting 
             // it to work with PUT both on the API and the backend side is a real hassle
@@ -120,6 +129,7 @@ namespace QuizGameAPI
         public Question EditQuestion(int id, Question question)
         {
             RestClient client = new RestClient(this.url);
+            client.Authenticator = new SimpleAuthenticator("username", this.username, "token", this.token);
 
             RestRequest request = new RestRequest("question/" + id, Method.POST);
             request.AddParameter("json", serializer.Serialize(question));
@@ -137,6 +147,7 @@ namespace QuizGameAPI
         public Boolean DeleteQuestion(int id)
         {
             RestClient client = new RestClient(this.url);
+            client.Authenticator = new SimpleAuthenticator("username", this.username, "token", this.token);
 
             RestRequest request = new RestRequest("question/{id}", Method.DELETE);
             request.AddUrlSegment("id", id.ToString());
@@ -161,6 +172,7 @@ namespace QuizGameAPI
         public List<String> GetAnswersByQuestionID(int id)
         {
             RestClient client = new RestClient(this.url);
+            client.Authenticator = new SimpleAuthenticator("username", this.username, "token", this.token);
 
             RestRequest request = new RestRequest("question/{id}/answer", Method.GET);
             request.AddUrlSegment("id", id.ToString());

@@ -14,7 +14,7 @@ namespace QuizGame_API_Test
         [TestCase]
         public void GetCategories()
         {
-            API api = new API("");
+            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
             
             List<String> categories = api.GetCategories();
             
@@ -26,7 +26,7 @@ namespace QuizGame_API_Test
         [TestCase]
         public void GetQuestionByID()
         {
-            API api = new API("");
+            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
             
             Question question = api.GetQuestion(1);
             
@@ -36,7 +36,7 @@ namespace QuizGame_API_Test
         [TestCase]
         public void GetQuestions()
         {
-            API api = new API("");
+            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
             
             List<Question> questions = api.GetQuestions();
             
@@ -46,7 +46,7 @@ namespace QuizGame_API_Test
         [TestCase]
         public void GetQuestionsByCategory()
         {
-            API api = new API("");
+            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
             
             List<Question> questions = api.GetQuestionsByCategory("basic");
             
@@ -56,10 +56,10 @@ namespace QuizGame_API_Test
         [TestCase]
         public void AddQuestion()
         {
-            API api = new API("");
+            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
 
             Question question = new Question("Solve 4 * 7");
-            question.AddCategory("basic");
+            question.AddCategories("basic");
             question.AddAnswers("24", "26", "28", "30", "32");
 
             Question result = api.AddQuestion(question);
@@ -70,15 +70,15 @@ namespace QuizGame_API_Test
         [TestCase]
         public void EditQuestion()
         {
-            API api = new API("");
+            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
 
             Question question = new Question("Solve 3 + 5 * 10");
-            question.AddCategory("basic");
+            question.AddCategories("basic");
             question.AddAnswers("80", "53", "35");
 
             Question result = api.AddQuestion(question);
 
-            question.RemoveAnswer("80");
+            question.RemoveAnswers("80");
 
             Question result2 = api.EditQuestion(result.ID, question);
 
@@ -88,7 +88,7 @@ namespace QuizGame_API_Test
         [TestCase]
         public void DeleteQuestion()
         {
-            API api = new API("");
+            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
 
             Question question = new Question("test", null, null);
             Question result = api.AddQuestion(question);
