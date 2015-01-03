@@ -48,7 +48,7 @@ namespace QuizGame_API_Test
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
             
-            List<Question> questions = api.GetQuestionsByCategory("basic");
+            List<Question> questions = api.GetQuestionsByCategory("algebra");
             
             Assert.AreNotEqual(questions, null);
         }
@@ -61,6 +61,7 @@ namespace QuizGame_API_Test
             Question question = new Question("Solve 4 * 7");
             question.AddCategories("basic");
             question.AddAnswers("24", "26", "28", "30", "32");
+            question.Correct = "28";
 
             Question result = api.AddQuestion(question);
 
@@ -75,6 +76,7 @@ namespace QuizGame_API_Test
             Question question = new Question("Solve 3 + 5 * 10");
             question.AddCategories("basic");
             question.AddAnswers("80", "53", "35");
+            question.Correct = "53";
 
             Question result = api.AddQuestion(question);
 
@@ -90,7 +92,7 @@ namespace QuizGame_API_Test
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
 
-            Question question = new Question("test", null, null);
+            Question question = new Question("test", null, null, null);
             Question result = api.AddQuestion(question);
 
             Boolean success = api.DeleteQuestion(result.ID);

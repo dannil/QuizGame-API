@@ -39,14 +39,14 @@ namespace QuizGame_API_Test
             answers3.Add("35");
             answers3.Add("53");
 
-            Question question4 = new Question("Solve 3 + 5 * 10", categories3, answers3);
+            Question question4 = new Question("Solve 3 + 5 * 10", categories3, answers3, "53");
             Question result3 = api.AddQuestion(question4);
 
             List<String> answers4 = new List<String>();
             answers4.Add("80");
             answers4.Add("53");
 
-            Question question5 = new Question(question4.Title, question4.Categories, answers4);
+            Question question5 = new Question(question4.Title, question4.Categories, answers4, question4.Correct);
 
             Question result4 = api.EditQuestion(result3.ID, question5);
         }
