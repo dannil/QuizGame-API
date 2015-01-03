@@ -65,7 +65,7 @@ namespace QuizGameAPI
         {
             foreach (String category in categories)
             {
-                if (!category.Equals(String.Empty))
+                if (category != null)
                 {
                     this.categories.Add(category);
                 }
@@ -76,7 +76,7 @@ namespace QuizGameAPI
         {
             foreach (String category in categories)
             {
-                if (!category.Equals(String.Empty))
+                if (category != null)
                 {
                     this.categories.Remove(category);
                 }
@@ -87,7 +87,7 @@ namespace QuizGameAPI
         {
             foreach (String answer in answers)
             {
-                if (!answer.Equals(String.Empty))
+                if (answer != null)
                 {
                     this.answers.Add(answer);
                 }
@@ -98,7 +98,7 @@ namespace QuizGameAPI
         {
             foreach (String answer in answers)
             {
-                if (!answer.Equals(String.Empty))
+                if (answer != null)
                 {
                     this.answers.Remove(answer);
                 }
