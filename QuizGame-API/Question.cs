@@ -25,10 +25,11 @@ namespace QuizGameAPI
             this.title = title;
         }
 
-        public Question(String title, List<String> categories, List<String> answers) : this(title)
+        public Question(String title, List<String> categories, List<String> answers, String correct) : this(title)
         {
             this.categories = categories;
             this.answers = answers;
+            this.correct = correct;
         }
 
         public int ID
