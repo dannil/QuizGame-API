@@ -34,6 +34,17 @@ namespace QuizGameAPI
             this.token = token;
         }
 
+        /// <summary>
+        /// Overloaded constructor
+        /// </summary>
+        /// <param name="username">The username to use</param>
+        /// <param name="token">The token key to use</param>
+        /// <param name="url">The URL to use</param>
+        public API(String url, String username, String token) : this(username, token)
+        {
+            this.url = url;
+        }
+
         // ----- CATEGORIES ----- //
 
         /// <summary>
