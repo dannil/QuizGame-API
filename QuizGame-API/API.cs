@@ -16,11 +16,14 @@ namespace QuizGameAPI
         private String token;
 
         private JsonSerializer serializer;
+        private RestClient client;
 
         private API()
         {
             this.url = "http://localhost:8080/quizgame-backend";
+
             this.serializer = new JsonSerializer();
+            this.client = new RestClient(this.url);
         }
 
         /// <summary>
@@ -32,6 +35,8 @@ namespace QuizGameAPI
         {
             this.username = username;
             this.token = token;
+
+            this.client.Authenticator = new SimpleAuthenticator("username", this.username, "token", this.token);
         }
 
         /// <summary>
@@ -53,13 +58,10 @@ namespace QuizGameAPI
         /// <returns>A list of categories</returns>
         public List<String> GetCategories()
         {
-            RestClient client = new RestClient(this.url);
-            client.Authenticator = new SimpleAuthenticator("username", this.username, "token", this.token);
-
             RestRequest request = new RestRequest("category", Method.GET);
 
             // execute the request
-            RestResponse<List<String>> response = (RestResponse<List<String>>)client.Execute<List<String>>(request);
+            RestResponse<List<String>> response = (RestResponse<List<String>>)this.client.Execute<List<String>>(request);
             return response.Data;
         }
 
@@ -72,14 +74,11 @@ namespace QuizGameAPI
         /// <returns>A question with the specified id</returns>
         public Question GetQuestion(int id)
         {
-            RestClient client = new RestClient(this.url);
-            client.Authenticator = new SimpleAuthenticator("username", this.username, "token", this.token);
-
             RestRequest request = new RestRequest("question/{id}", Method.GET);
             request.AddUrlSegment("id", id.ToString());
 
             // execute the request
-            RestResponse<Question> response = (RestResponse<Question>)client.Execute<Question>(request);
+            RestResponse<Question> response = (RestResponse<Question>)this.client.Execute<Question>(request);
             return response.Data;
         }
 
@@ -89,13 +88,10 @@ namespace QuizGameAPI
         /// <returns>A list of questions</returns>
         public List<Question> GetQuestions()
         {
-            RestClient client = new RestClient(this.url);
-            client.Authenticator = new SimpleAuthenticator("username", this.username, "token", this.token);
-
             RestRequest request = new RestRequest("question", Method.GET);
 
             // execute the request
-            RestResponse<List<Question>> response = (RestResponse<List<Question>>)client.Execute<List<Question>>(request);
+            RestResponse<List<Question>> response = (RestResponse<List<Question>>)this.client.Execute<List<Question>>(request);
             return response.Data;
         }
 
@@ -106,14 +102,11 @@ namespace QuizGameAPI
         /// <returns>A list of questions</returns>
         public List<Question> GetQuestionsByCategory(String category)
         {
-            RestClient client = new RestClient(this.url);
-            client.Authenticator = new SimpleAuthenticator("username", this.username, "token", this.token);
-
             RestRequest request = new RestRequest("question/category/{category}", Method.GET);
             request.AddUrlSegment("category", category);
 
             // execute the request
-            RestResponse<List<Question>> response = (RestResponse<List<Question>>)client.Execute<List<Question>>(request);
+            RestResponse<List<Question>> response = (RestResponse<List<Question>>)this.client.Execute<List<Question>>(request);
             return response.Data;
         }
 
@@ -124,29 +117,23 @@ namespace QuizGameAPI
         /// <returns>A question with new values set by the back-end system</returns>
         public Question AddQuestion(Question question)
         {
-            RestClient client = new RestClient(this.url);
-            client.Authenticator = new SimpleAuthenticator("username", this.username, "token", this.token);
-
             // This should really be PUT instead of POST considering our pattern, but getting 
             // it to work with PUT both on the API and the backend side is a real hassle
             RestRequest request = new RestRequest("question", Method.POST);
             request.AddParameter("json", serializer.Serialize(question));
 
             // execute the request
-            RestResponse<Question> response = (RestResponse<Question>)client.Execute<Question>(request);
+            RestResponse<Question> response = (RestResponse<Question>)this.client.Execute<Question>(request);
             return response.Data;
         }
 
         public Question EditQuestion(int id, Question question)
         {
-            RestClient client = new RestClient(this.url);
-            client.Authenticator = new SimpleAuthenticator("username", this.username, "token", this.token);
-
             RestRequest request = new RestRequest("question/" + id, Method.POST);
             request.AddParameter("json", serializer.Serialize(question));
 
             // execute the request
-            RestResponse<Question> response = (RestResponse<Question>)client.Execute<Question>(request);
+            RestResponse<Question> response = (RestResponse<Question>)this.client.Execute<Question>(request);
             return response.Data;
         }
 
@@ -157,14 +144,11 @@ namespace QuizGameAPI
         /// <returns>True if a question with that id exists and is successfully deleted, otherwise false</returns>
         public Boolean DeleteQuestion(int id)
         {
-            RestClient client = new RestClient(this.url);
-            client.Authenticator = new SimpleAuthenticator("username", this.username, "token", this.token);
-
             RestRequest request = new RestRequest("question/{id}", Method.DELETE);
             request.AddUrlSegment("id", id.ToString());
 
             // execute the request
-            RestResponse<Question> response = (RestResponse<Question>)client.Execute<Question>(request);
+            RestResponse<Question> response = (RestResponse<Question>)this.client.Execute<Question>(request);
             return (response.StatusCode.Equals(HttpStatusCode.OK) ? true : false);
         }
 
@@ -182,13 +166,10 @@ namespace QuizGameAPI
 
         public List<String> GetAnswersByQuestionID(int id)
         {
-            RestClient client = new RestClient(this.url);
-            client.Authenticator = new SimpleAuthenticator("username", this.username, "token", this.token);
-
             RestRequest request = new RestRequest("question/{id}/answer", Method.GET);
             request.AddUrlSegment("id", id.ToString());
 
-            RestResponse<List<String>> response = (RestResponse<List<String>>)client.Execute<List<String>>(request);
+            RestResponse<List<String>> response = (RestResponse<List<String>>)this.client.Execute<List<String>>(request);
             return response.Data;
         }
 
