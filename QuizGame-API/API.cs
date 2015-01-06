@@ -62,6 +62,10 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<List<String>> response = (RestResponse<List<String>>)this.client.Execute<List<String>>(request);
+            if (response.ErrorException != null)
+            {
+                throw response.ErrorException;
+            }
             return response.Data;
         }
 
@@ -79,6 +83,10 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<Question> response = (RestResponse<Question>)this.client.Execute<Question>(request);
+            if (response.ErrorException != null)
+            {
+                throw response.ErrorException;
+            }
             return response.Data;
         }
 
@@ -92,6 +100,10 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<List<Question>> response = (RestResponse<List<Question>>)this.client.Execute<List<Question>>(request);
+            if (response.ErrorException != null)
+            {
+                throw response.ErrorException;
+            }
             return response.Data;
         }
 
@@ -107,6 +119,10 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<List<Question>> response = (RestResponse<List<Question>>)this.client.Execute<List<Question>>(request);
+            if (response.ErrorException != null)
+            {
+                throw response.ErrorException;
+            }
             return response.Data;
         }
 
@@ -124,6 +140,10 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<Question> response = (RestResponse<Question>)this.client.Execute<Question>(request);
+            if (response.ErrorException != null)
+            {
+                throw response.ErrorException;
+            }
             return response.Data;
         }
 
@@ -134,11 +154,15 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<Question> response = (RestResponse<Question>)this.client.Execute<Question>(request);
+            if (response.ErrorException != null)
+            {
+                throw response.ErrorException;
+            }
             return response.Data;
         }
 
         /// <summary>
-        /// Delete a question with the specified id
+        /// Delete a question with the specified id.
         /// </summary>
         /// <param name="id">The id of the question</param>
         /// <returns>True if a question with that id exists and is successfully deleted, otherwise false</returns>
@@ -149,6 +173,10 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<Question> response = (RestResponse<Question>)this.client.Execute<Question>(request);
+            if (response.ErrorException != null)
+            {
+                throw response.ErrorException;
+            }
             return (response.StatusCode.Equals(HttpStatusCode.OK) ? true : false);
         }
 
@@ -164,12 +192,22 @@ namespace QuizGameAPI
             return null;
         }
 
+        /// <summary>
+        /// Get all the answers for the specified question id.
+        /// </summary>
+        /// <param name="id">The id of the question</param>
+        /// <returns>A list of all the question's answers, with the correct answer as the last entry</returns>
         public List<String> GetAnswersByQuestionID(int id)
         {
             RestRequest request = new RestRequest("question/{id}/answer", Method.GET);
             request.AddUrlSegment("id", id.ToString());
 
+            // execute the request
             RestResponse<List<String>> response = (RestResponse<List<String>>)this.client.Execute<List<String>>(request);
+            if (response.ErrorException != null)
+            {
+                throw response.ErrorException;
+            }
             return response.Data;
         }
 
