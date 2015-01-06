@@ -50,7 +50,14 @@ namespace QuizGame_API_Test
         public void GetQuestionsByCategory()
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
-            
+
+            Question question = new Question("Solve a, where a + 4 = 11");
+            question.AddCategories("basic", "algebra");
+            question.AddAnswers("Undefined", "0", "-7", "7");
+            question.Correct = "7";
+
+            Question result = api.AddQuestion(question);
+
             List<Question> questions = api.GetQuestionsByCategory("algebra");
             
             Assert.AreNotEqual(questions, null);

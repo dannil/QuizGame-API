@@ -12,10 +12,11 @@ namespace QuizGame_API_Test
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
 
+            List<Question> questions1 = api.GetQuestions();
             List<String> answers = api.GetAnswersByQuestionID(1);
 
             Question question = api.GetQuestion(1);
-            List<Question> questions1 = api.GetQuestions();
+            
             List<Question> questions2 = api.GetQuestionsByCategory("basic");
             List<String> categories1 = api.GetCategories();
             Boolean success = api.DeleteQuestion(2);
