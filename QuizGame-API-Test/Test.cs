@@ -9,6 +9,16 @@ namespace QuizGame_API_Test
     public class Test
     {
 
+        [TestCase]
+        public void TestURLConstructor()
+        {
+            API api = new API("http://localhost:8080/quizgame-backend", "api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
+
+            List<String> categories = api.GetCategories();
+
+            Assert.AreNotEqual(categories, null);
+        }
+
         // ----- CATEGORIES ----- //
 
         [TestCase]
@@ -29,6 +39,7 @@ namespace QuizGame_API_Test
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
 
             Question question = QuestionUtility.GetGenericQuestion();
+
             Question result = api.AddQuestion(question);
 
             Question fetched = api.GetQuestion(result.ID);
@@ -78,8 +89,22 @@ namespace QuizGame_API_Test
             Assert.AreNotEqual(result, null);
         }
 
+
         [TestCase]
-        public void EditQuestion()
+        public void AddQuestionWithNullValues()
+        {
+            // Tests that if given null, null is returned
+            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
+
+            Question question = new Question(null, null, null, null);
+
+            Question result = api.AddQuestion(question);
+
+            Assert.AreEqual(result, null);
+        }
+
+        [TestCase]
+        public void EditQuestionAnswers()
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
 
@@ -98,6 +123,23 @@ namespace QuizGame_API_Test
         }
 
         [TestCase]
+        public void EditQuestionCategories()
+        {
+            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
+
+            Question question = QuestionUtility.GetGenericQuestion();
+            question.AddCategories("generic", "undefined");
+
+            Question result = api.AddQuestion(question);
+
+            question.RemoveCategories("generic");
+
+            Question result2 = api.EditQuestion(result.ID, question);
+
+            Assert.AreNotEqual(result.Categories, result2.Categories);
+        }
+
+        [TestCase]
         public void DeleteQuestion()
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
@@ -112,15 +154,41 @@ namespace QuizGame_API_Test
         }
 
         [TestCase]
-        public void AddQuestionWithNullValues()
+        public void DeleteNonExistingQuestion()
         {
-            // Tests that if given null, null is returned
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
 
-            Question question = new Question(null, null, null, null);
+            Question question = QuestionUtility.GetGenericQuestion();
+
             Question result = api.AddQuestion(question);
 
-            Assert.AreEqual(result, null);
+            Boolean success = api.DeleteQuestion(result.ID);
+            // Try to delete the question again
+            success = api.DeleteQuestion(result.ID);
+
+            Assert.AreEqual(success, false);
+        }
+
+        [TestCase]
+        public void GetAnswersByQuestionID()
+        {
+            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
+
+            Question question = QuestionUtility.GetGenericQuestion();
+
+            Question result = api.AddQuestion(question);
+
+            List<String> answers = api.GetAnswersByQuestionID(result.ID);
+
+            Assert.AreNotEqual(answers, null);
+        }
+
+        [TestCase]
+        public void QuestionToString()
+        {
+            Question question = QuestionUtility.GetGenericQuestion();
+
+            Assert.AreNotEqual(question.ToString(), null);
         }
     }
 }
