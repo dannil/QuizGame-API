@@ -62,7 +62,7 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<List<String>> response = (RestResponse<List<String>>)this.client.Execute<List<String>>(request);
-            if (response.ErrorException != null)
+            if (!response.StatusCode.Equals(HttpStatusCode.OK))
             {
                 throw response.ErrorException;
             }
@@ -83,7 +83,7 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<Question> response = (RestResponse<Question>)this.client.Execute<Question>(request);
-            if (response.ErrorException != null)
+            if (!response.StatusCode.Equals(HttpStatusCode.OK))
             {
                 throw response.ErrorException;
             }
@@ -100,7 +100,7 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<List<Question>> response = (RestResponse<List<Question>>)this.client.Execute<List<Question>>(request);
-            if (response.ErrorException != null)
+            if (!response.StatusCode.Equals(HttpStatusCode.OK))
             {
                 throw response.ErrorException;
             }
@@ -119,7 +119,7 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<List<Question>> response = (RestResponse<List<Question>>)this.client.Execute<List<Question>>(request);
-            if (response.ErrorException != null)
+            if (!response.StatusCode.Equals(HttpStatusCode.OK))
             {
                 throw response.ErrorException;
             }
@@ -140,7 +140,7 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<Question> response = (RestResponse<Question>)this.client.Execute<Question>(request);
-            if (response.ErrorException != null)
+            if (!response.StatusCode.Equals(HttpStatusCode.OK))
             {
                 throw response.ErrorException;
             }
@@ -154,7 +154,7 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<Question> response = (RestResponse<Question>)this.client.Execute<Question>(request);
-            if (response.ErrorException != null)
+            if (!response.StatusCode.Equals(HttpStatusCode.OK))
             {
                 throw response.ErrorException;
             }
@@ -173,7 +173,7 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<Question> response = (RestResponse<Question>)this.client.Execute<Question>(request);
-            if (response.ErrorException != null)
+            if (!response.StatusCode.Equals(HttpStatusCode.OK))
             {
                 throw response.ErrorException;
             }
@@ -204,7 +204,7 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<List<String>> response = (RestResponse<List<String>>)this.client.Execute<List<String>>(request);
-            if (response.ErrorException != null)
+            if (!response.StatusCode.Equals(HttpStatusCode.OK))
             {
                 throw response.ErrorException;
             }
