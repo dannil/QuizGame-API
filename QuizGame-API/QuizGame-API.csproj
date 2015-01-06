@@ -7,7 +7,7 @@
     <ProjectGuid>{DB97EB01-1AF7-4212-9DDF-AAA622FC7495}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>QuizGameAPI</RootNamespace>
+    <RootNamespace>QuizGame.API</RootNamespace>
     <AssemblyName>QuizGame-API</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

@@ -63,10 +63,6 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<List<String>> response = (RestResponse<List<String>>)this.client.Execute<List<String>>(request);
-            if (!response.StatusCode.Equals(HttpStatusCode.OK) && !response.StatusCode.Equals(HttpStatusCode.NotFound))
-            {
-                throw response.ErrorException;
-            }
             return response.Data;
         }
 
@@ -84,10 +80,6 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<Question> response = (RestResponse<Question>)this.client.Execute<Question>(request);
-            if (!response.StatusCode.Equals(HttpStatusCode.OK) && !response.StatusCode.Equals(HttpStatusCode.NotFound))
-            {
-                throw response.ErrorException;
-            }
             return response.Data;
         }
 
@@ -101,10 +93,6 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<List<Question>> response = (RestResponse<List<Question>>)this.client.Execute<List<Question>>(request);
-            if (!response.StatusCode.Equals(HttpStatusCode.OK) && !response.StatusCode.Equals(HttpStatusCode.NotFound))
-            {
-                throw response.ErrorException;
-            }
             return response.Data;
         }
 
@@ -120,10 +108,6 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<List<Question>> response = (RestResponse<List<Question>>)this.client.Execute<List<Question>>(request);
-            if (!response.StatusCode.Equals(HttpStatusCode.OK) && !response.StatusCode.Equals(HttpStatusCode.NotFound))
-            {
-                throw response.ErrorException;
-            }
             return response.Data;
         }
 
@@ -141,10 +125,6 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<Question> response = (RestResponse<Question>)this.client.Execute<Question>(request);
-            if (!response.StatusCode.Equals(HttpStatusCode.OK) && !response.StatusCode.Equals(HttpStatusCode.NotFound))
-            {
-                throw response.ErrorException;
-            }
             return response.Data;
         }
 
@@ -156,10 +136,6 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<Question> response = (RestResponse<Question>)this.client.Execute<Question>(request);
-            if (!response.StatusCode.Equals(HttpStatusCode.OK) && !response.StatusCode.Equals(HttpStatusCode.NotFound))
-            {
-                throw response.ErrorException;
-            }
             return response.Data;
         }
 
@@ -175,24 +151,20 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse response = (RestResponse)this.client.Execute(request);
-            if (!response.StatusCode.Equals(HttpStatusCode.OK) && !response.StatusCode.Equals(HttpStatusCode.NotFound))
-            {
-                throw response.ErrorException;
-            }
             return (response.StatusCode.Equals(HttpStatusCode.OK) ? true : false);
         }
 
         // ----- ANSWERS ----- //
 
-        public List<String> GetAnswers()
-        {
-            return null;
-        }
+        //public List<String> GetAnswers()
+        //{
+        //    return null;
+        //}
 
-        public List<String> GetAnswersByCategory(String category)
-        {
-            return null;
-        }
+        //public List<String> GetAnswersByCategory(String category)
+        //{
+        //    return null;
+        //}
 
         /// <summary>
         /// Get all the answers for the specified question id.
@@ -206,10 +178,6 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<List<String>> response = (RestResponse<List<String>>)this.client.Execute<List<String>>(request);
-            if (!response.StatusCode.Equals(HttpStatusCode.OK) && !response.StatusCode.Equals(HttpStatusCode.NotFound))
-            {
-                throw response.ErrorException;
-            }
             return response.Data;
         }
 
