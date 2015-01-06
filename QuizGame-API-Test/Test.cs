@@ -27,8 +27,11 @@ namespace QuizGame_API_Test
         public void GetQuestionByID()
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
-            
-            Question question = api.GetQuestion(1);
+
+            Question question = QuestionUtility.GetGenericQuestion();
+            Question result = api.AddQuestion(question);
+
+            Question fetched = api.GetQuestion(result.ID);
             
             Assert.AreNotEqual(question, null);
         }
@@ -92,12 +95,25 @@ namespace QuizGame_API_Test
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
 
-            Question question = new Question("test", null, null, null);
+            Question question = QuestionUtility.GetGenericQuestion();
+
             Question result = api.AddQuestion(question);
 
             Boolean success = api.DeleteQuestion(result.ID);
 
             Assert.AreEqual(success, true);
+        }
+
+        [TestCase]
+        public void AddQuestionWithNullValues()
+        {
+            // Tests that if given null, null is returned
+            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
+
+            Question question = new Question(null, null, null, null);
+            Question result = api.AddQuestion(question);
+
+            Assert.AreEqual(result, null);
         }
     }
 }
