@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace QuizGameAPI
@@ -62,7 +63,7 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<List<String>> response = (RestResponse<List<String>>)this.client.Execute<List<String>>(request);
-            if (!response.StatusCode.Equals(HttpStatusCode.OK))
+            if (!response.StatusCode.Equals(HttpStatusCode.OK) && !response.StatusCode.Equals(HttpStatusCode.NotFound))
             {
                 throw response.ErrorException;
             }
@@ -83,7 +84,7 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<Question> response = (RestResponse<Question>)this.client.Execute<Question>(request);
-            if (!response.StatusCode.Equals(HttpStatusCode.OK))
+            if (!response.StatusCode.Equals(HttpStatusCode.OK) && !response.StatusCode.Equals(HttpStatusCode.NotFound))
             {
                 throw response.ErrorException;
             }
@@ -100,7 +101,7 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<List<Question>> response = (RestResponse<List<Question>>)this.client.Execute<List<Question>>(request);
-            if (!response.StatusCode.Equals(HttpStatusCode.OK))
+            if (!response.StatusCode.Equals(HttpStatusCode.OK) && !response.StatusCode.Equals(HttpStatusCode.NotFound))
             {
                 throw response.ErrorException;
             }
@@ -119,7 +120,7 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<List<Question>> response = (RestResponse<List<Question>>)this.client.Execute<List<Question>>(request);
-            if (!response.StatusCode.Equals(HttpStatusCode.OK))
+            if (!response.StatusCode.Equals(HttpStatusCode.OK) && !response.StatusCode.Equals(HttpStatusCode.NotFound))
             {
                 throw response.ErrorException;
             }
@@ -140,7 +141,7 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<Question> response = (RestResponse<Question>)this.client.Execute<Question>(request);
-            if (!response.StatusCode.Equals(HttpStatusCode.OK))
+            if (!response.StatusCode.Equals(HttpStatusCode.OK) && !response.StatusCode.Equals(HttpStatusCode.NotFound))
             {
                 throw response.ErrorException;
             }
@@ -149,12 +150,13 @@ namespace QuizGameAPI
 
         public Question EditQuestion(int id, Question question)
         {
-            RestRequest request = new RestRequest("question/" + id, Method.POST);
+            RestRequest request = new RestRequest("question/{id}", Method.POST);
+            request.AddUrlSegment("id", id.ToString());
             request.AddParameter("json", serializer.Serialize(question));
 
             // execute the request
             RestResponse<Question> response = (RestResponse<Question>)this.client.Execute<Question>(request);
-            if (!response.StatusCode.Equals(HttpStatusCode.OK))
+            if (!response.StatusCode.Equals(HttpStatusCode.OK) && !response.StatusCode.Equals(HttpStatusCode.NotFound))
             {
                 throw response.ErrorException;
             }
@@ -172,8 +174,8 @@ namespace QuizGameAPI
             request.AddUrlSegment("id", id.ToString());
 
             // execute the request
-            RestResponse<Question> response = (RestResponse<Question>)this.client.Execute<Question>(request);
-            if (!response.StatusCode.Equals(HttpStatusCode.OK))
+            RestResponse response = (RestResponse)this.client.Execute(request);
+            if (!response.StatusCode.Equals(HttpStatusCode.OK) && !response.StatusCode.Equals(HttpStatusCode.NotFound))
             {
                 throw response.ErrorException;
             }
@@ -204,7 +206,7 @@ namespace QuizGameAPI
 
             // execute the request
             RestResponse<List<String>> response = (RestResponse<List<String>>)this.client.Execute<List<String>>(request);
-            if (!response.StatusCode.Equals(HttpStatusCode.OK))
+            if (!response.StatusCode.Equals(HttpStatusCode.OK) && !response.StatusCode.Equals(HttpStatusCode.NotFound))
             {
                 throw response.ErrorException;
             }
