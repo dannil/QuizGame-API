@@ -66,7 +66,7 @@ namespace QuizGameAPI
         {
             foreach (String category in categories)
             {
-                if (category != null)
+                if (category != null && !this.categories.Contains(category))
                 {
                     this.categories.Add(category);
                 }
@@ -88,7 +88,7 @@ namespace QuizGameAPI
         {
             foreach (String answer in answers)
             {
-                if (answer != null)
+                if (answer != null && !this.answers.Contains(answer))
                 {
                     this.answers.Add(answer);
                 }
