@@ -21,6 +21,9 @@ namespace QuizGame_API_Test
 
         // ----- CATEGORIES ----- //
 
+        /// <summary>
+        /// Test-ID 1
+        /// </summary>
         [TestCase]
         public void GetCategories()
         {
@@ -33,6 +36,9 @@ namespace QuizGame_API_Test
 
         // ----- QUESTIONS ----- //
 
+        /// <summary>
+        /// Test-ID 2
+        /// </summary>
         [TestCase]
         public void GetQuestionByID()
         {
@@ -48,6 +54,67 @@ namespace QuizGame_API_Test
         }
 
         [TestCase]
+        public void GetQuestionWithNonExistingIDLowerBoundary()
+        {
+            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
+
+            api.AddQuestion(QuestionUtility.GetGenericQuestion());
+
+            List<Question> questions = api.GetQuestions();
+
+            Question result = api.GetQuestion(-1);
+
+            Assert.AreEqual(result, null);
+        }
+
+        [TestCase]
+        public void GetQuestionWithExistingIDLowerBoundary()
+        {
+            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
+
+            api.AddQuestion(QuestionUtility.GetGenericQuestion());
+
+            List<Question> questions = api.GetQuestions();
+
+            Question result = questions[0];
+
+            Assert.AreNotEqual(result, null);
+        }
+
+        [TestCase]
+        public void GetQuestionWithExistingIDUpperBoundary()
+        {
+            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
+
+            api.AddQuestion(QuestionUtility.GetGenericQuestion());
+
+            List<Question> questions = api.GetQuestions();
+
+            Question result = questions[questions.Count - 1];
+
+            Assert.AreNotEqual(result, null);
+        }
+
+        /// <summary>
+        /// Test-ID 15
+        /// </summary>
+        [TestCase]
+        public void GetQuestionWithNonExistingIDUpperBoundary()
+        {
+            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
+            api.AddQuestion(QuestionUtility.GetGenericQuestion());
+
+            List<Question> questions = api.GetQuestions();
+
+            Question result = api.GetQuestion(questions[questions.Count - 1].ID + 1);
+
+            Assert.AreEqual(result, null);
+        }
+
+        /// <summary>
+        /// Test-ID 3
+        /// </summary>
+        [TestCase]
         public void GetQuestions()
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
@@ -57,6 +124,9 @@ namespace QuizGame_API_Test
             Assert.AreNotEqual(questions, null);
         }
 
+        /// <summary>
+        /// Test-ID 4
+        /// </summary>
         [TestCase]
         public void GetQuestionsByCategory()
         {
@@ -74,6 +144,9 @@ namespace QuizGame_API_Test
             Assert.AreNotEqual(questions, null);
         }
 
+        /// <summary>
+        /// Test-ID 5
+        /// </summary>
         [TestCase]
         public void AddQuestion()
         {
@@ -89,7 +162,9 @@ namespace QuizGame_API_Test
             Assert.AreNotEqual(result, null);
         }
 
-
+        /// <summary>
+        /// Test-ID 14
+        /// </summary>
         [TestCase]
         public void AddQuestionWithNullValues()
         {
@@ -103,8 +178,82 @@ namespace QuizGame_API_Test
             Assert.AreEqual(result, null);
         }
 
+        /// <summary>
+        /// Test-ID 6
+        /// </summary>
         [TestCase]
-        public void EditQuestionAnswers()
+        public void EditQuestionTitle()
+        {
+            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
+
+            Question question = QuestionUtility.GetGenericQuestion();
+
+            Question result = api.AddQuestion(question);
+
+            question.Title = "changed";
+
+            Question result2 = api.EditQuestion(result.ID, question);
+
+            Assert.AreNotEqual(result.Title, result2.Title);
+        }
+
+        /// <summary>
+        /// Test-ID 8
+        /// </summary>
+        [TestCase]
+        public void EditQuestionCategoriesAdd()
+        {
+            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
+
+            Question question = QuestionUtility.GetGenericQuestion();
+
+            Question result = api.AddQuestion(question);
+
+            question.AddCategories("generic", "undefined");
+
+            Question result2 = api.EditQuestion(result.ID, question);
+
+            Assert.AreNotEqual(result.Categories, result2.Categories);
+        }
+
+        [TestCase]
+        public void EditQuestionCategoriesRemove()
+        {
+            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
+
+            Question question = QuestionUtility.GetGenericQuestion();
+            question.AddCategories("undefined");
+
+            Question result = api.AddQuestion(question);
+
+            question.RemoveCategories("undefined");
+
+            Question result2 = api.EditQuestion(result.ID, question);
+
+            Assert.AreNotEqual(result.Categories, result2.Categories);
+        }
+
+        [TestCase]
+        public void EditQuestionAnswersAdd()
+        {
+            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
+
+            Question question = new Question("Solve 3 + 5 * 10");
+            question.AddCategories("basic");
+            question.AddAnswers("80", "53", "35");
+            question.Correct = "53";
+
+            Question result = api.AddQuestion(question);
+
+            question.AddAnswers("200");
+
+            Question result2 = api.EditQuestion(result.ID, question);
+
+            Assert.AreNotEqual(result.Answers, result2.Answers);
+        }
+
+        [TestCase]
+        public void EditQuestionAnswersRemove()
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
 
@@ -123,22 +272,24 @@ namespace QuizGame_API_Test
         }
 
         [TestCase]
-        public void EditQuestionCategories()
+        public void EditQuestionCorrect()
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
 
             Question question = QuestionUtility.GetGenericQuestion();
-            question.AddCategories("generic", "undefined");
 
             Question result = api.AddQuestion(question);
 
-            question.RemoveCategories("generic");
+            question.Correct = "changed";
 
             Question result2 = api.EditQuestion(result.ID, question);
 
-            Assert.AreNotEqual(result.Categories, result2.Categories);
+            Assert.AreNotEqual(result.Correct, result2.Correct);
         }
 
+        /// <summary>
+        /// Test-ID 7
+        /// </summary>
         [TestCase]
         public void DeleteQuestion()
         {
@@ -153,22 +304,71 @@ namespace QuizGame_API_Test
             Assert.AreEqual(success, true);
         }
 
+        /// <summary>
+        /// Test-ID 9
+        /// </summary>
         [TestCase]
-        public void DeleteNonExistingQuestion()
+        public void DeleteQuestionWithNonExistingIDLowerBoundary()
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
+            api.AddQuestion(QuestionUtility.GetGenericQuestion());
 
-            Question question = QuestionUtility.GetGenericQuestion();
+            Boolean result = api.DeleteQuestion(-1);
 
-            Question result = api.AddQuestion(question);
-
-            Boolean success = api.DeleteQuestion(result.ID);
-            // Try to delete the question again
-            success = api.DeleteQuestion(result.ID);
-
-            Assert.AreEqual(success, false);
+            Assert.AreEqual(result, false);
         }
 
+        /// <summary>
+        /// Test-ID 19
+        /// </summary>
+        [TestCase]
+        public void DeleteQuestionWithExistingIDLowerBoundary()
+        {
+            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
+            api.AddQuestion(QuestionUtility.GetGenericQuestion());
+
+            List<Question> questions = api.GetQuestions();
+
+            Boolean result = api.DeleteQuestion(questions[0].ID);
+
+            Assert.AreEqual(result, true);
+        }
+
+        /// <summary>
+        /// Test-ID 20
+        /// </summary>
+        [TestCase]
+        public void DeleteQuestionWithExistingIDUpperBoundary()
+        {
+            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
+            api.AddQuestion(QuestionUtility.GetGenericQuestion());
+
+            List<Question> questions = api.GetQuestions();
+
+            Boolean result = api.DeleteQuestion(questions[questions.Count - 1].ID);
+
+            Assert.AreEqual(result, true);
+        }
+
+        /// <summary>
+        /// Test-ID 21
+        /// </summary>
+        [TestCase]
+        public void DeleteQuestionWithNonExistingIDUpperBoundary()
+        {
+            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
+            api.AddQuestion(QuestionUtility.GetGenericQuestion());
+
+            List<Question> questions = api.GetQuestions();
+
+            Boolean result = api.DeleteQuestion(questions[questions.Count - 1].ID + 1);
+
+            Assert.AreEqual(result, false);
+        }
+
+        /// <summary>
+        /// Test-ID 11
+        /// </summary>
         [TestCase]
         public void GetAnswersByQuestionID()
         {
@@ -183,12 +383,25 @@ namespace QuizGame_API_Test
             Assert.AreNotEqual(answers, null);
         }
 
+        /// <summary>
+        /// Test-ID 10
+        /// </summary>
         [TestCase]
         public void QuestionToString()
         {
             Question question = QuestionUtility.GetGenericQuestion();
 
             Assert.AreNotEqual(question.ToString(), null);
+        }
+
+        [TestCase]
+        public void QuestionToStringCompare()
+        {
+            Question question = QuestionUtility.GetGenericQuestion();
+            Question question2 = QuestionUtility.GetGenericQuestion();
+            question2.AddCategories("basic");
+
+            Assert.AreNotEqual(question.ToString(), question2.ToString());
         }
     }
 }
