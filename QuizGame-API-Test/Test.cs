@@ -8,7 +8,9 @@ namespace QuizGame_API_Test
 {
     public class Test
     {
-
+        /// <summary>
+        /// Test-ID XX
+        /// </summary>
         [TestCase]
         public void TestURLConstructor()
         {
@@ -53,6 +55,9 @@ namespace QuizGame_API_Test
             Assert.AreNotEqual(question, null);
         }
 
+        /// <summary>
+        /// Test-ID 16
+        /// </summary>
         [TestCase]
         public void GetQuestionWithNonExistingIDLowerBoundary()
         {
@@ -67,6 +72,9 @@ namespace QuizGame_API_Test
             Assert.AreEqual(result, null);
         }
 
+        /// <summary>
+        /// Test-ID 18
+        /// </summary>
         [TestCase]
         public void GetQuestionWithExistingIDLowerBoundary()
         {
@@ -81,6 +89,9 @@ namespace QuizGame_API_Test
             Assert.AreNotEqual(result, null);
         }
 
+        /// <summary>
+        /// Test-ID 17
+        /// </summary>
         [TestCase]
         public void GetQuestionWithExistingIDUpperBoundary()
         {
@@ -216,6 +227,9 @@ namespace QuizGame_API_Test
             Assert.AreNotEqual(result.Categories, result2.Categories);
         }
 
+        /// <summary>
+        /// Test-ID XX
+        /// </summary>
         [TestCase]
         public void EditQuestionCategoriesRemove()
         {
@@ -233,6 +247,9 @@ namespace QuizGame_API_Test
             Assert.AreNotEqual(result.Categories, result2.Categories);
         }
 
+        /// <summary>
+        /// Test-ID 12
+        /// </summary>
         [TestCase]
         public void EditQuestionAnswersAdd()
         {
@@ -252,6 +269,9 @@ namespace QuizGame_API_Test
             Assert.AreNotEqual(result.Answers, result2.Answers);
         }
 
+        /// <summary>
+        /// Test-ID 13
+        /// </summary>
         [TestCase]
         public void EditQuestionAnswersRemove()
         {
@@ -271,6 +291,9 @@ namespace QuizGame_API_Test
             Assert.AreNotEqual(result.Answers, result2.Answers);
         }
 
+        /// <summary>
+        /// Test-ID XX
+        /// </summary>
         [TestCase]
         public void EditQuestionCorrect()
         {
@@ -394,6 +417,9 @@ namespace QuizGame_API_Test
             Assert.AreNotEqual(question.ToString(), null);
         }
 
+        /// <summary>
+        /// Test-ID XX
+        /// </summary>
         [TestCase]
         public void QuestionToStringCompare()
         {
