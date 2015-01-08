@@ -620,5 +620,61 @@ namespace QuizGame_API_Test
             });
         }
 
+        /// <summary>
+        /// Test-ID 38
+        /// </summary>
+        [TestCase]
+        public void EditQuestionCategoryValidFirstNullLast()
+        {
+            Question question = QuestionUtility.GetGenericQuestion();
+
+            Assert.Throws<ArgumentNullException>(delegate
+            {
+                question.AddCategories("basic", null);
+            });
+        }
+
+        /// <summary>
+        /// Test-ID 39
+        /// </summary>
+        [TestCase]
+        public void EditQuestionAnswerValidFirstNullLast()
+        {
+            Question question = QuestionUtility.GetGenericQuestion();
+
+            Assert.Throws<ArgumentNullException>(delegate
+            {
+                question.AddAnswers("20", null);
+            });
+        }
+
+        /// <summary>
+        /// Test-ID 40
+        /// </summary>
+        [TestCase]
+        public void EditQuestionCategoryListIsNull()
+        {
+            Question question = QuestionUtility.GetGenericQuestion();
+
+            Assert.Throws<ArgumentNullException>(delegate
+            {
+                question.Categories = null;
+            });
+        }
+
+        /// <summary>
+        /// Test-ID 41
+        /// </summary>
+        [TestCase]
+        public void EditQuestionAnswerListIsNull()
+        {
+            Question question = QuestionUtility.GetGenericQuestion();
+
+            Assert.Throws<ArgumentNullException>(delegate
+            {
+                question.Answers = null;
+            });
+        }
+
     }
 }
