@@ -5,10 +5,11 @@ using System.Text;
 
 namespace QuizGame.API.Test
 {
+    /// <summary>
+    /// Class for running NUnit tests on our questions and the corresponding API.
+    /// </summary>
     public class Test
     {
-        // ----- CATEGORIES ----- //
-
         /// <summary>
         /// Test-ID 1
         /// </summary>
@@ -21,8 +22,6 @@ namespace QuizGame.API.Test
             
             Assert.AreNotEqual(categories, null);
         }
-
-        // ----- QUESTIONS ----- //
 
         /// <summary>
         /// Test-ID 2

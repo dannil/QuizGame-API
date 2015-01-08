@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace QuizGame.API.Test
 {
+    /// <summary>
+    /// Utility class for generating semi-randomized questions which can be used in our tests.
+    /// </summary>
     public class QuestionUtility
     {
         private static List<Question> questions;
@@ -19,21 +22,13 @@ namespace QuizGame.API.Test
         }
 
         /// <summary>
-        /// Generate a generic question to be used in the tests
+        /// Get a semi-randomized question from our list of questions.
         /// </summary>
-        /// <returns>A generic question</returns>
+        /// <returns>A question</returns>
         public static Question GetGenericQuestion()
         {
             Random random = new Random();
             return questions[random.Next(questions.Count)];
-
-            //Question temp = questions[random.Next(questions.Count)];
-
-            //Question question = new Question(temp.Title);
-            //question.Categories = temp.Categories;
-            //question.Answers = temp.Answers;
-            //question.Correct = temp.Correct;
-            //return question;
         }
     }
 }

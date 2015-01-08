@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace QuizGame.API
 {
+    /// <summary>
+    /// Class which converts our objects to a JSON presentation.
+    /// </summary>
     public class JsonSerializer
     {
         private static readonly JsonSerializerSettings settings = new JsonSerializerSettings

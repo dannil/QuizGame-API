@@ -8,6 +8,9 @@ using System.Text;
 
 namespace QuizGame.API
 {
+    /// <summary>
+    /// API which communicates with the specified quiz game back-end.
+    /// </summary>
     public class API
     {
         // Instance variables
@@ -19,6 +22,9 @@ namespace QuizGame.API
         private JsonSerializer serializer;
         private RestClient client;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         private API()
         {
             this.url = "http://localhost:8080/quizgame-backend";
@@ -128,6 +134,12 @@ namespace QuizGame.API
             return response.Data;
         }
 
+        /// <summary>
+        /// Edit the question with the specified id.
+        /// </summary>
+        /// <param name="id">The id of the question to edit</param>
+        /// <param name="question">The question values to replace the saved question</param>
+        /// <returns>A question with the new values if the operation succeeded, otherwise null</returns>
         public Question EditQuestion(int id, Question question)
         {
             RestRequest request = new RestRequest("question/{id}", Method.POST);

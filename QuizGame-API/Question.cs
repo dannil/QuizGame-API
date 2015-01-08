@@ -4,6 +4,22 @@ using System.Text;
 
 namespace QuizGame.API
 {
+    /// <summary>
+    /// Class which holds values dedicated to a question in the quiz game. This class can be
+    /// utilized two ways:
+    /// 
+    ///     1. Use the constructor Question(Title, Categories, Answers, Correct) by adding all the
+    ///        values at the moment of initialization.
+    /// 
+    ///     2. Use the constructor Question(Title) and add categories, answers and the correct 
+    ///        answer either by using the respective properties (however, that is the same as utilizing
+    ///        Question(Title, Categories, Answers, Correct) or by using the methods AddCategories() and
+    ///        AddAnswers() to add these later on.
+    ///        
+    /// This class doesn't allow null values and will throw exception on trying to assign a variable the
+    /// value null. If you're not sure what values you need to add at the moment of initialization, see
+    /// point 2 above.
+    /// </summary>
     public class Question
     {
         private int id;
@@ -14,17 +30,31 @@ namespace QuizGame.API
 
         private String correct;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public Question()
         {
             this.categories = new List<String>();
             this.answers = new List<String>();
         }
 
+        /// <summary>
+        /// Overloaded constructor
+        /// </summary>
+        /// <param name="title">The title</param>
         public Question(String title) : this()
         {
             this.Title = title;
         }
 
+        /// <summary>
+        /// Overloaded constructor
+        /// </summary>
+        /// <param name="title">The title</param>
+        /// <param name="categories">The categories</param>
+        /// <param name="answers">The answers</param>
+        /// <param name="correct">The correct answer</param>
         public Question(String title, List<String> categories, List<String> answers, String correct) : this(title)
         {
             this.Categories = categories;
@@ -45,6 +75,10 @@ namespace QuizGame.API
             this.correct = question.Correct;
         }
 
+        /// <summary>
+        /// Property for id. Performs a null check on the 
+        /// value and throws an exception if it's null
+        /// </summary>
         public int ID
         {
             get { return id; }
@@ -61,6 +95,10 @@ namespace QuizGame.API
             }
         }
 
+        /// <summary>
+        /// Property for title. Performs a null check on the 
+        /// value and throws an exception if it's null
+        /// </summary>
         public String Title
         {
             get { return title; }
@@ -74,6 +112,10 @@ namespace QuizGame.API
             }
         }
 
+        /// <summary>
+        /// Property for categories. Performs a null check on the 
+        /// value and throws an exception if it's null
+        /// </summary>
         public List<String> Categories
         {
             get { return categories; }
@@ -87,6 +129,10 @@ namespace QuizGame.API
             }
         }
 
+        /// <summary>
+        /// Property for answers. Performs a null check on the 
+        /// value and throws an exception if it's null
+        /// </summary>
         public List<String> Answers
         {
             get { return answers; }
@@ -100,6 +146,10 @@ namespace QuizGame.API
             }
         }
 
+        /// <summary>
+        /// Property for correct. Performs a null check on the 
+        /// value and throws an exception if it's null
+        /// </summary>
         public String Correct
         {
             get { return correct; }
@@ -113,6 +163,10 @@ namespace QuizGame.API
             }
         }
 
+        /// <summary>
+        /// Add categories to the question
+        /// </summary>
+        /// <param name="categories">The categories to add</param>
         public void AddCategories(params String[] categories)
         {
             if (categories == null)
@@ -132,6 +186,10 @@ namespace QuizGame.API
             }
         }
 
+        /// <summary>
+        /// Remove categories from the question
+        /// </summary>
+        /// <param name="categories">The categories to remove</param>
         public void RemoveCategories(params String[] categories)
         {
             foreach (String category in categories)
@@ -143,6 +201,10 @@ namespace QuizGame.API
             }
         }
 
+        /// <summary>
+        /// Add answers to the question
+        /// </summary>
+        /// <param name="categories">The answers to add</param>
         public void AddAnswers(params String[] answers)
         {
             if (answers == null)
@@ -162,6 +224,10 @@ namespace QuizGame.API
             }
         }
 
+        /// <summary>
+        /// Remove answers from the question
+        /// </summary>
+        /// <param name="categories">The answers to remove</param>
         public void RemoveAnswers(params String[] answers)
         {
             foreach (String answer in answers)
@@ -173,6 +239,9 @@ namespace QuizGame.API
             }
         }
 
+        /// <summary>
+        /// Overridden ToString() to show a string presentation of this object
+        /// </summary>
         public override string ToString()
         {
             return "Question={ id={" + id + "}, title={" + title + "}, categories={" + 
