@@ -35,84 +35,38 @@ namespace QuizGameAPI
         public int ID
         {
             get { return id; }
-            set 
-            {
-                if (value >= 0)
-                {
-                    id = value;
-                }
-                else
-                {
-                    id = 0;
-                }
-            }
+            set { id = value; }
         }
 
         public String Title
         {
             get { return title; }
-            set 
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("Null is not a valid value for Title");
-                }
-                title = value;
-            }
+            set { title = value; }
         }
 
         public List<String> Categories
         {
             get { return categories; }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("Null is not valid values for categories");
-                }
-                categories = value;
-            }
+            set { categories = value; }
         }
 
         public List<String> Answers
         {
             get { return answers; }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("Null is not valid values for answers");
-                }
-                answers = value;
-            }
+            set { answers = value; }
         }
 
         public String Correct
         {
             get { return correct; }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("Null is not a valid value for Correct");
-                }
-                correct = value;
-            }
+            set { correct = value; }
         }
 
         public void AddCategories(params String[] categories)
         {
-            if (categories == null)
-            {
-                throw new ArgumentNullException("Null is not valid values for categories");
-            }
             foreach (String category in categories)
             {
-                if (category == null)
-                {
-                    throw new ArgumentNullException("Null is not a valid value for a category");
-                }
-                if (!this.categories.Contains(category))
+                if (category != null && !this.categories.Contains(category))
                 {
                     this.categories.Add(category);
                 }
@@ -132,17 +86,9 @@ namespace QuizGameAPI
 
         public void AddAnswers(params String[] answers)
         {
-            if (answers == null)
-            {
-                throw new ArgumentNullException("Null is not valid values for answers");
-            }
             foreach (String answer in answers)
             {
-                if (answer == null)
-                {
-                    throw new ArgumentNullException("Null is not a valid value for an answer");
-                }
-                if (!this.answers.Contains(answer))
+                if (answer != null && !this.answers.Contains(answer))
                 {
                     this.answers.Add(answer);
                 }
