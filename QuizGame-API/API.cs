@@ -6,7 +6,7 @@ using System.Net;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace QuizGameAPI
+namespace QuizGame.API
 {
     public class API
     {

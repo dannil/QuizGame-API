@@ -1,11 +1,10 @@
-﻿using QuizGameAPI;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuizGame_API_Test
+namespace QuizGame.API.Test
 {
     public class QuestionUtility
     {

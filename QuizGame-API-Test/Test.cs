@@ -1,10 +1,9 @@
 ﻿using NUnit.Framework;
-using QuizGameAPI;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace QuizGame_API_Test
+namespace QuizGame.API.Test
 {
     public class Test
     {

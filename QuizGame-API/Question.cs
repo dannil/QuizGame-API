@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace QuizGameAPI
+namespace QuizGame.API
 {
     public class Question
     {
