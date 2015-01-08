@@ -12,12 +12,13 @@ namespace QuizGame.API
     ///        values at the moment of initialization.
     /// 
     ///     2. Use the constructor Question(Title) and add categories, answers and the correct 
-    ///        answer either by using the respective properties (however, that is the same as utilizing
-    ///        Question(Title, Categories, Answers, Correct) or by using the methods AddCategories() and
-    ///        AddAnswers() to add these later on.
+    ///        answer either by using the respective properties (however, that is the equivalence of
+    ///        Question(Title, Categories, Answers, Correct), only assigning the categories, answers and 
+    ///        the correct answer later on) or by using the methods AddCategories(), AddAnswers() and
+    ///        the property for the correct answer.
     ///        
     /// This class doesn't allow null values and will throw exception on trying to assign a variable the
-    /// value null. If you're not sure what values you need to add at the moment of initialization, see
+    /// value null. If you don't know what values these should be at the moment of initialization, see
     /// point 2 above.
     /// </summary>
     public class Question
