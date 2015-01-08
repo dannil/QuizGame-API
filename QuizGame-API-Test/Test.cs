@@ -576,7 +576,7 @@ namespace QuizGame.API.Test
         /// Test-ID 35
         /// </summary>
         [TestCase]
-        public void EditQuestionCategoryNull()
+        public void EditQuestionCategoryAddNull()
         {
             Question question = new Question(QuestionUtility.GetGenericQuestion());
 
@@ -590,7 +590,7 @@ namespace QuizGame.API.Test
         /// Test-ID 36
         /// </summary>
         [TestCase]
-        public void EditQuestionAnswerNull()
+        public void EditQuestionAnswersAddNull()
         {
             Question question = new Question(QuestionUtility.GetGenericQuestion());
 
