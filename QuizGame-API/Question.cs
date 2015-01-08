@@ -22,14 +22,14 @@ namespace QuizGameAPI
 
         public Question(String title) : this()
         {
-            this.title = title;
+            this.Title = title;
         }
 
         public Question(String title, List<String> categories, List<String> answers, String correct) : this(title)
         {
-            this.categories = categories;
-            this.answers = answers;
-            this.correct = correct;
+            this.Categories = categories;
+            this.Answers = answers;
+            this.Correct = correct;
         }
 
         public int ID

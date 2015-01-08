@@ -166,14 +166,10 @@ namespace QuizGame_API_Test
         [TestCase]
         public void AddQuestionWithNullValues()
         {
-            // Tests that if given null, null is returned
-            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
-
-            Question question = new Question(null, null, null, null);
-
-            Question result = api.AddQuestion(question);
-
-            Assert.AreEqual(result, null);
+            Assert.Throws<ArgumentNullException>(delegate
+            {
+                Question question = new Question(null, null, null, null);
+            });
         }
 
         /// <summary>
