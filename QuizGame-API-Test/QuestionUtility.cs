@@ -25,7 +25,15 @@ namespace QuizGame.API.Test
         public static Question GetGenericQuestion()
         {
             Random random = new Random();
-            return questions[random.Next(0, questions.Count)];
+            return questions[random.Next(questions.Count)];
+
+            //Question temp = questions[random.Next(questions.Count)];
+
+            //Question question = new Question(temp.Title);
+            //question.Categories = temp.Categories;
+            //question.Answers = temp.Answers;
+            //question.Correct = temp.Correct;
+            //return question;
         }
     }
 }

@@ -32,7 +32,7 @@ namespace QuizGame.API.Test
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
 
-            Question question = QuestionUtility.GetGenericQuestion();
+            Question question = new Question(QuestionUtility.GetGenericQuestion());
 
             Question result = api.AddQuestion(question);
 
@@ -49,7 +49,7 @@ namespace QuizGame.API.Test
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
 
-            api.AddQuestion(QuestionUtility.GetGenericQuestion());
+            api.AddQuestion(new Question(QuestionUtility.GetGenericQuestion()));
 
             List<Question> questions = api.GetQuestions();
 
@@ -66,7 +66,7 @@ namespace QuizGame.API.Test
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
 
-            api.AddQuestion(QuestionUtility.GetGenericQuestion());
+            api.AddQuestion(new Question(QuestionUtility.GetGenericQuestion()));
 
             List<Question> questions = api.GetQuestions();
 
@@ -83,7 +83,7 @@ namespace QuizGame.API.Test
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
 
-            api.AddQuestion(QuestionUtility.GetGenericQuestion());
+            api.AddQuestion(new Question(QuestionUtility.GetGenericQuestion()));
 
             List<Question> questions = api.GetQuestions();
 
@@ -99,7 +99,7 @@ namespace QuizGame.API.Test
         public void GetQuestionWithNonExistingIDUpperBoundary()
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
-            api.AddQuestion(QuestionUtility.GetGenericQuestion());
+            api.AddQuestion(new Question(QuestionUtility.GetGenericQuestion()));
 
             List<Question> questions = api.GetQuestions();
 
@@ -179,7 +179,7 @@ namespace QuizGame.API.Test
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
 
-            Question question = QuestionUtility.GetGenericQuestion();
+            Question question = new Question(QuestionUtility.GetGenericQuestion()); ;
 
             Question result = api.AddQuestion(question);
 
@@ -198,7 +198,7 @@ namespace QuizGame.API.Test
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
 
-            Question question = QuestionUtility.GetGenericQuestion();
+            Question question = new Question(QuestionUtility.GetGenericQuestion());
 
             Question result = api.AddQuestion(question);
 
@@ -261,7 +261,7 @@ namespace QuizGame.API.Test
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
 
-            Question question = QuestionUtility.GetGenericQuestion();
+            Question question = new Question(QuestionUtility.GetGenericQuestion());
 
             Question result = api.AddQuestion(question);
 
@@ -277,7 +277,7 @@ namespace QuizGame.API.Test
         public void DeleteQuestionWithNonExistingIDLowerBoundary()
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
-            api.AddQuestion(QuestionUtility.GetGenericQuestion());
+            api.AddQuestion(new Question(QuestionUtility.GetGenericQuestion()));
 
             Boolean result = api.DeleteQuestion(-1);
 
@@ -291,7 +291,7 @@ namespace QuizGame.API.Test
         public void DeleteQuestionWithExistingIDLowerBoundary()
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
-            api.AddQuestion(QuestionUtility.GetGenericQuestion());
+            api.AddQuestion(new Question(QuestionUtility.GetGenericQuestion()));
 
             List<Question> questions = api.GetQuestions();
 
@@ -307,7 +307,7 @@ namespace QuizGame.API.Test
         public void DeleteQuestionWithExistingIDUpperBoundary()
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
-            api.AddQuestion(QuestionUtility.GetGenericQuestion());
+            api.AddQuestion(new Question(QuestionUtility.GetGenericQuestion()));
 
             List<Question> questions = api.GetQuestions();
 
@@ -323,7 +323,7 @@ namespace QuizGame.API.Test
         public void DeleteQuestionWithNonExistingIDUpperBoundary()
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
-            api.AddQuestion(QuestionUtility.GetGenericQuestion());
+            api.AddQuestion(new Question(QuestionUtility.GetGenericQuestion()));
 
             List<Question> questions = api.GetQuestions();
 
@@ -340,7 +340,7 @@ namespace QuizGame.API.Test
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
 
-            Question question = QuestionUtility.GetGenericQuestion();
+            Question question = new Question(QuestionUtility.GetGenericQuestion());
 
             Question result = api.AddQuestion(question);
 
@@ -355,7 +355,7 @@ namespace QuizGame.API.Test
         [TestCase]
         public void QuestionToString()
         {
-            Question question = QuestionUtility.GetGenericQuestion();
+            Question question = new Question(QuestionUtility.GetGenericQuestion());
 
             Assert.AreNotEqual(question.ToString(), null);
         }
@@ -366,9 +366,9 @@ namespace QuizGame.API.Test
         [TestCase]
         public void QuestionToStringCompare()
         {
-            Question question = QuestionUtility.GetGenericQuestion();
-            Question question2 = QuestionUtility.GetGenericQuestion();
-            question2.AddCategories("basic");
+            Question question = new Question(QuestionUtility.GetGenericQuestion());
+            Question question2 = new Question(QuestionUtility.GetGenericQuestion());
+            question2.AddCategories("generic");
 
             Assert.AreNotEqual(question.ToString(), question2.ToString());
         }
@@ -399,7 +399,7 @@ namespace QuizGame.API.Test
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
 
-            Question question = QuestionUtility.GetGenericQuestion();
+            Question question = new Question(QuestionUtility.GetGenericQuestion());
             question.AddCategories("undefined");
 
             Question result = api.AddQuestion(question);
@@ -419,7 +419,7 @@ namespace QuizGame.API.Test
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
 
-            Question question = QuestionUtility.GetGenericQuestion();
+            Question question = new Question(QuestionUtility.GetGenericQuestion());
 
             Question result = api.AddQuestion(question);
 
@@ -436,10 +436,10 @@ namespace QuizGame.API.Test
         [TestCase]
         public void EditQuestionID()
         {
-            Question question = QuestionUtility.GetGenericQuestion();
+            Question question = new Question(QuestionUtility.GetGenericQuestion());
             question.ID = 0;
 
-            Question question2 = QuestionUtility.GetGenericQuestion();
+            Question question2 = new Question(QuestionUtility.GetGenericQuestion());
             question2.ID = 1;
 
             Assert.AreNotEqual(question.ID, question2.ID);
@@ -451,10 +451,10 @@ namespace QuizGame.API.Test
         [TestCase]
         public void EditQuestionTitle()
         {
-            Question question = QuestionUtility.GetGenericQuestion();
+            Question question = new Question(QuestionUtility.GetGenericQuestion());
             question.Title = "title";
 
-            Question question2 = QuestionUtility.GetGenericQuestion();
+            Question question2 = new Question(QuestionUtility.GetGenericQuestion());
             question2.Title = "another title";
 
             Assert.AreNotEqual(question.Title, question2.Title);
@@ -463,13 +463,13 @@ namespace QuizGame.API.Test
         /// <summary>
         /// Test-ID 28
         /// </summary>
-        [TestCase]
+        [Test]
         public void EditQuestionCategoriesAdd()
         {
-            Question question = QuestionUtility.GetGenericQuestion();
+            Question question = new Question(QuestionUtility.GetGenericQuestion());
             question.AddCategories("generic");
 
-            Question question2 = QuestionUtility.GetGenericQuestion();
+            Question question2 = new Question(QuestionUtility.GetGenericQuestion());
             question2.AddCategories("generic", "undefined");
 
             Assert.AreNotEqual(question.Categories, question2.Categories);
@@ -481,10 +481,10 @@ namespace QuizGame.API.Test
         [TestCase]
         public void EditQuestionCategoriesRemove()
         {
-            Question question = QuestionUtility.GetGenericQuestion();
+            Question question = new Question(QuestionUtility.GetGenericQuestion());
             question.AddCategories("undefined");
 
-            Question question2 = QuestionUtility.GetGenericQuestion();
+            Question question2 = new Question(QuestionUtility.GetGenericQuestion());
             question2.AddCategories("undefined");
             question2.RemoveCategories("undefined");
 
@@ -537,10 +537,10 @@ namespace QuizGame.API.Test
         [TestCase]
         public void EditQuestionCorrect()
         {
-            Question question = QuestionUtility.GetGenericQuestion();
+            Question question = new Question(QuestionUtility.GetGenericQuestion());
             question.Correct = "changed";
 
-            Question question2 = QuestionUtility.GetGenericQuestion();
+            Question question2 = new Question(QuestionUtility.GetGenericQuestion());
             question2.Correct = "another correct";
 
             Assert.AreNotEqual(question.Correct, question2.Correct);
@@ -552,7 +552,7 @@ namespace QuizGame.API.Test
         [TestCase]
         public void EditQuestionIDLowerBoundary()
         {
-            Question question = QuestionUtility.GetGenericQuestion();
+            Question question = new Question(QuestionUtility.GetGenericQuestion());
             question.ID = -1;
 
             // ID defaults to 0 if it's value isn't valid
@@ -565,7 +565,7 @@ namespace QuizGame.API.Test
         [TestCase]
         public void EditQuestionTitleNull()
         {
-            Question question = QuestionUtility.GetGenericQuestion();
+            Question question = new Question(QuestionUtility.GetGenericQuestion());
 
             Assert.Throws<ArgumentNullException>(delegate
             {
@@ -579,7 +579,7 @@ namespace QuizGame.API.Test
         [TestCase]
         public void EditQuestionCategoryNull()
         {
-            Question question = QuestionUtility.GetGenericQuestion();
+            Question question = new Question(QuestionUtility.GetGenericQuestion());
 
             Assert.Throws<ArgumentNullException>(delegate
             {
@@ -593,7 +593,7 @@ namespace QuizGame.API.Test
         [TestCase]
         public void EditQuestionAnswerNull()
         {
-            Question question = QuestionUtility.GetGenericQuestion();
+            Question question = new Question(QuestionUtility.GetGenericQuestion());
 
             Assert.Throws<ArgumentNullException>(delegate
             {
@@ -607,7 +607,7 @@ namespace QuizGame.API.Test
         [TestCase]
         public void EditQuestionCorrectNull()
         {
-            Question question = QuestionUtility.GetGenericQuestion();
+            Question question = new Question(QuestionUtility.GetGenericQuestion());
 
             Assert.Throws<ArgumentNullException>(delegate
             {
@@ -621,7 +621,7 @@ namespace QuizGame.API.Test
         [TestCase]
         public void EditQuestionCategoryValidFirstNullLast()
         {
-            Question question = QuestionUtility.GetGenericQuestion();
+            Question question = new Question(QuestionUtility.GetGenericQuestion());
 
             Assert.Throws<ArgumentNullException>(delegate
             {
@@ -635,7 +635,7 @@ namespace QuizGame.API.Test
         [TestCase]
         public void EditQuestionAnswerValidFirstNullLast()
         {
-            Question question = QuestionUtility.GetGenericQuestion();
+            Question question = new Question(QuestionUtility.GetGenericQuestion());
 
             Assert.Throws<ArgumentNullException>(delegate
             {
@@ -649,7 +649,7 @@ namespace QuizGame.API.Test
         [TestCase]
         public void EditQuestionCategoryListIsNull()
         {
-            Question question = QuestionUtility.GetGenericQuestion();
+            Question question = new Question(QuestionUtility.GetGenericQuestion());
 
             Assert.Throws<ArgumentNullException>(delegate
             {
@@ -663,7 +663,7 @@ namespace QuizGame.API.Test
         [TestCase]
         public void EditQuestionAnswerListIsNull()
         {
-            Question question = QuestionUtility.GetGenericQuestion();
+            Question question = new Question(QuestionUtility.GetGenericQuestion());
 
             Assert.Throws<ArgumentNullException>(delegate
             {

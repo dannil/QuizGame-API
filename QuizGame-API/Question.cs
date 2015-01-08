@@ -32,6 +32,19 @@ namespace QuizGame.API
             this.Correct = correct;
         }
 
+        /// <summary>
+        /// Copy constructor
+        /// </summary>
+        /// <param name="question">The question object to deep copy</param>
+        public Question(Question question)
+        {
+            this.id = question.ID;
+            this.title = question.Title;
+            this.categories = new List<String>(question.Categories);
+            this.answers = new List<String>(question.Answers);
+            this.correct = question.Correct;
+        }
+
         public int ID
         {
             get { return id; }
@@ -163,7 +176,7 @@ namespace QuizGame.API
         public override string ToString()
         {
             return "Question={ id={" + id + "}, title={" + title + "}, categories={" + 
-                String.Join(",", categories) + "}, answers={" + String.Join(",", answers) + "} }";
+                String.Join(",", categories) + "}, answers={" + String.Join(",", answers) + "}, correct={" + correct + "} }";
         }
 
     }
