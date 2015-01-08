@@ -8,24 +8,6 @@ namespace QuizGame_API_Test
 {
     public class Test
     {
-        /// <summary>
-        /// Test-ID XX
-        /// </summary>
-        [TestCase]
-        public void TestURLConstructor()
-        {
-            API api = new API("http://localhost:8080/quizgame-backend", "api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
-            
-            Question question = new Question("Solve 4 + 4 * 4");
-            question.AddCategories("basic");
-            question.AddAnswers("16", "20", "24");
-            api.AddQuestion(question);
-
-            List<String> categories = api.GetCategories();
-
-            Assert.AreNotEqual(categories, null);
-        }
-
         // ----- CATEGORIES ----- //
 
         /// <summary>
@@ -233,26 +215,6 @@ namespace QuizGame_API_Test
         }
 
         /// <summary>
-        /// Test-ID XX
-        /// </summary>
-        [TestCase]
-        public void EditQuestionCategoriesRemoveDatabase()
-        {
-            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
-
-            Question question = QuestionUtility.GetGenericQuestion();
-            question.AddCategories("undefined");
-
-            Question result = api.AddQuestion(question);
-
-            question.RemoveCategories("undefined");
-
-            Question result2 = api.EditQuestion(result.ID, question);
-
-            Assert.AreNotEqual(result.Categories, result2.Categories);
-        }
-
-        /// <summary>
         /// Test-ID 12
         /// </summary>
         [TestCase]
@@ -294,25 +256,6 @@ namespace QuizGame_API_Test
             Question result2 = api.EditQuestion(result.ID, question);
 
             Assert.AreNotEqual(result.Answers, result2.Answers);
-        }
-
-        /// <summary>
-        /// Test-ID XX
-        /// </summary>
-        [TestCase]
-        public void EditQuestionCorrectDatabase()
-        {
-            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
-
-            Question question = QuestionUtility.GetGenericQuestion();
-
-            Question result = api.AddQuestion(question);
-
-            question.Correct = "changed";
-
-            Question result2 = api.EditQuestion(result.ID, question);
-
-            Assert.AreNotEqual(result.Correct, result2.Correct);
         }
 
         /// <summary>
@@ -433,6 +376,63 @@ namespace QuizGame_API_Test
             question2.AddCategories("basic");
 
             Assert.AreNotEqual(question.ToString(), question2.ToString());
+        }
+
+        /// <summary>
+        /// Test-ID XX
+        /// </summary>
+        [TestCase]
+        public void TestURLConstructor()
+        {
+            API api = new API("http://localhost:8080/quizgame-backend", "api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
+
+            Question question = new Question("Solve 4 + 4 * 4");
+            question.AddCategories("basic");
+            question.AddAnswers("16", "20", "24");
+            api.AddQuestion(question);
+
+            List<String> categories = api.GetCategories();
+
+            Assert.AreNotEqual(categories, null);
+        }
+
+        /// <summary>
+        /// Test-ID XX
+        /// </summary>
+        [TestCase]
+        public void EditQuestionCategoriesRemoveDatabase()
+        {
+            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
+
+            Question question = QuestionUtility.GetGenericQuestion();
+            question.AddCategories("undefined");
+
+            Question result = api.AddQuestion(question);
+
+            question.RemoveCategories("undefined");
+
+            Question result2 = api.EditQuestion(result.ID, question);
+
+            Assert.AreNotEqual(result.Categories, result2.Categories);
+        }
+
+        /// <summary>
+        /// Test-ID XX
+        /// </summary>
+        [TestCase]
+        public void EditQuestionCorrectDatabase()
+        {
+            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
+
+            Question question = QuestionUtility.GetGenericQuestion();
+
+            Question result = api.AddQuestion(question);
+
+            question.Correct = "changed";
+
+            Question result2 = api.EditQuestion(result.ID, question);
+
+            Assert.AreNotEqual(result.Correct, result2.Correct);
         }
 
         /// <summary>
