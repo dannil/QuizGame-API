@@ -8,17 +8,24 @@ namespace QuizGame.API.Test
 {
     public class QuestionUtility
     {
+        private static List<Question> questions;
+
+        static QuestionUtility()
+        {
+            questions = new List<Question>();
+            questions.Add(new Question("Solve 4 * 5", new List<String>() { "basic" }, new List<String>() { "18", "20", "22" }, "20"));
+            questions.Add(new Question("Solve 4 * 3 + 5 * 5", new List<String>() { "basic" }, new List<String>() { "37", "64", "101" }, "37"));
+            questions.Add(new Question("Solve a, where a^3 = 64", new List<String>() { "algebra" }, new List<String>() { "3", "4", "5", "6" }, "4"));
+        }
+
         /// <summary>
         /// Generate a generic question to be used in the tests
         /// </summary>
         /// <returns>A generic question</returns>
         public static Question GetGenericQuestion()
         {
-            Question question = new Question("test");
-            question.AddCategories("test");
-            question.AddAnswers("test");
-            question.Correct = "test";
-            return question;
+            Random random = new Random();
+            return questions[random.Next(0, questions.Count)];
         }
     }
 }
