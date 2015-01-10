@@ -82,7 +82,7 @@ namespace QuizGame.API
         /// </summary>
         public int ID
         {
-            get { return id; }
+            get { return this.id; }
             set 
             {
                 if (value >= 0)
@@ -102,14 +102,14 @@ namespace QuizGame.API
         /// </summary>
         public String Title
         {
-            get { return title; }
+            get { return this.title; }
             set 
             {
                 if (value == null)
                 {
                     throw new ArgumentNullException("Null is not a valid value for Title");
                 }
-                title = value;
+                this.title = value;
             }
         }
 
@@ -119,14 +119,16 @@ namespace QuizGame.API
         /// </summary>
         public List<String> Categories
         {
-            get { return categories; }
+            get { return this.categories; }
             set
             {
                 if (value == null)
                 {
                     throw new ArgumentNullException("Null is not valid values for categories");
                 }
-                categories = value;
+                this.categories = new List<String>();
+                String[] temp = value.ToArray();
+                this.AddCategories(temp);
             }
         }
 
@@ -136,14 +138,16 @@ namespace QuizGame.API
         /// </summary>
         public List<String> Answers
         {
-            get { return answers; }
+            get { return this.answers; }
             set
             {
                 if (value == null)
                 {
                     throw new ArgumentNullException("Null is not valid values for answers");
                 }
-                answers = value;
+                this.answers = new List<String>();
+                String[] temp = value.ToArray();
+                this.AddAnswers(temp);
             }
         }
 
@@ -153,14 +157,14 @@ namespace QuizGame.API
         /// </summary>
         public String Correct
         {
-            get { return correct; }
+            get { return this.correct; }
             set
             {
                 if (value == null)
                 {
                     throw new ArgumentNullException("Null is not a valid value for Correct");
                 }
-                correct = value;
+                this.correct = value;
             }
         }
 
