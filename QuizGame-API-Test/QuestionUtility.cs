@@ -16,9 +16,9 @@ namespace QuizGame.API.Test
         static QuestionUtility()
         {
             questions = new List<Question>();
-            questions.Add(new Question("Solve 4 * 5", new List<String>() { "basic" }, new List<String>() { "18", "20", "22" }, "20"));
-            questions.Add(new Question("Solve 4 * 3 + 5 * 5", new List<String>() { "basic" }, new List<String>() { "37", "64", "101" }, "37"));
-            questions.Add(new Question("Solve a, where a^3 = 64", new List<String>() { "algebra" }, new List<String>() { "3", "4", "5", "6" }, "4"));
+            questions.Add(new Question("Solve 4 * 5", new List<String> { "basic" }, new List<String> { "18", "20", "22" }, "20"));
+            questions.Add(new Question("Solve 4 * 3 + 5 * 5", new List<String> { "basic" }, new List<String> { "37", "64", "101" }, "37"));
+            questions.Add(new Question("Solve a, where a^3 = 64", new List<String> { "algebra" }, new List<String> { "3", "4", "5", "6" }, "4"));
         }
 
         /// <summary>

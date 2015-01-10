@@ -148,7 +148,7 @@ namespace QuizGame.API.Test
         {
             API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
 
-            List<String> categories = new List<String>() { "basic", "basic" };
+            List<String> categories = new List<String> { "basic", "basic" };
             List<String> answers = new List<String> { "24", "26", "28", "30", "32" };
 
             Question question = new Question("Solve 4 * 7", categories, answers, "28");
