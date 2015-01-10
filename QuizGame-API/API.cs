@@ -124,8 +124,6 @@ namespace QuizGame.API
         /// <returns>A question with new values set by the back-end system</returns>
         public Question AddQuestion(Question question)
         {
-            // This should really be PUT instead of POST considering our pattern, but getting 
-            // it to work with PUT both on the API and the backend side is a real hassle
             RestRequest request = new RestRequest("question", Method.POST);
             request.AddParameter("json", serializer.Serialize(question));
 
@@ -142,6 +140,10 @@ namespace QuizGame.API
         /// <returns>A question with the new values if the operation succeeded, otherwise null</returns>
         public Question EditQuestion(int id, Question question)
         {
+            // This should really be PUT instead of POST considering our pattern, but getting 
+            // it to work with PUT both on the API and the backend side is a real hassle, as it
+            // seems that the parameters aren't passed to the back-end when using PUT. There is
+            // no functional difference between them beside the verb being used.
             RestRequest request = new RestRequest("question/{id}", Method.POST);
             request.AddUrlSegment("id", id.ToString());
             request.AddParameter("json", serializer.Serialize(question));
