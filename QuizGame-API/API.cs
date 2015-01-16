@@ -88,9 +88,9 @@ namespace QuizGame.API
 
             // execute the request
             RestResponse<Question> response = (RestResponse<Question>)this.client.Execute<Question>(request);
-            if (response.ErrorException != null)
+            if (response.ErrorException != null && !response.StatusCode.Equals(HttpStatusCode.NotFound))
             {
-                // Needs tweaking
+                // Works correctly
                 throw response.ErrorException;
             }
             return response.Data;
@@ -125,9 +125,9 @@ namespace QuizGame.API
 
             // execute the request
             RestResponse<List<Question>> response = (RestResponse<List<Question>>)this.client.Execute<List<Question>>(request);
-            if (response.ErrorException != null)
+            if (response.ErrorException != null && !response.StatusCode.Equals(HttpStatusCode.NotFound))
             {
-                // Needs tweaking
+                // Works correctly
                 throw response.ErrorException;
             }
             return response.Data;
@@ -171,7 +171,7 @@ namespace QuizGame.API
 
             // execute the request
             RestResponse<Question> response = (RestResponse<Question>)this.client.Execute<Question>(request);
-            if (response.ErrorException != null)
+            if (response.ErrorException != null && !response.StatusCode.Equals(HttpStatusCode.NotFound))
             {
                 // Needs tweaking
                 throw response.ErrorException;
@@ -191,7 +191,7 @@ namespace QuizGame.API
 
             // execute the request
             RestResponse response = (RestResponse)this.client.Execute(request);
-            if (response.ErrorException != null)
+            if (response.ErrorException != null && !response.StatusCode.Equals(HttpStatusCode.NotFound))
             {
                 // Needs tweaking
                 throw response.ErrorException;
@@ -223,7 +223,7 @@ namespace QuizGame.API
 
             // execute the request
             RestResponse<List<String>> response = (RestResponse<List<String>>)this.client.Execute<List<String>>(request);
-            if (response.ErrorException != null)
+            if (response.ErrorException != null && !response.StatusCode.Equals(HttpStatusCode.NotFound))
             {
                 // Needs tweaking
                 throw response.ErrorException;
