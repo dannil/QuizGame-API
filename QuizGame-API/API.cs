@@ -40,7 +40,7 @@ namespace QuizGame.API
             this.username = username;
             this.token = token;
 
-            this.client.Authenticator = new SimpleAuthenticator("username", this.username, "token", this.token);
+            this.client.Authenticator = new HttpBasicAuthenticator(this.username, this.token);
         }
 
         /// <summary>
