@@ -8,7 +8,7 @@ namespace QuizGame.API
     /// </summary>
     public class JsonSerializer
     {
-        private static readonly JsonSerializerSettings settings = new JsonSerializerSettings
+        private readonly JsonSerializerSettings settings = new JsonSerializerSettings
         {
             ContractResolver = new LowercaseContractResolver()
         };
