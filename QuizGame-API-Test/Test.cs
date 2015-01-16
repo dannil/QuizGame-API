@@ -382,6 +382,7 @@ namespace QuizGame.API.Test
             Question question = new Question("Solve 4 + 4 * 4");
             question.AddCategories("basic");
             question.AddAnswers("16", "20", "24");
+            question.Correct = "20";
             api.AddQuestion(question);
 
             List<String> categories = api.GetCategories();
