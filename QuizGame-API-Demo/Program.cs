@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace QuizGame.API.Demo
 {
@@ -6,11 +7,7 @@ namespace QuizGame.API.Demo
     {
         static void Main(string[] args)
         {
-            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740");
-
-            // Add a question
-            Console.WriteLine("Press enter to run add question-demo: ");
-            Console.ReadLine();
+            API api = new API("api-test", "2fb5e13419fc89246865e7a324f476ec624e8740a");
 
             Question question = new Question("Solve a, where a + 4 = 11");
             question.AddCategories("basic", "algebra");
@@ -22,9 +19,38 @@ namespace QuizGame.API.Demo
 
             Console.WriteLine();
 
-            // Delete a question
-            Console.WriteLine("Press enter to run delete question-demo: ");
-            Console.ReadLine();
+            Console.WriteLine(api.GetCategories());
+
+            Console.WriteLine();
+
+            Console.WriteLine(api.GetQuestions());
+
+            Console.WriteLine();
+
+            List<Question> list1 = api.GetQuestions();
+            Console.WriteLine(api.GetQuestion(list1[list1.Count - 1].ID));
+
+            Console.WriteLine();
+
+            Console.WriteLine(api.GetQuestionsByCategory("algebra"));
+
+            Console.WriteLine();
+
+            List<Question> list2 = api.GetQuestions();
+            Console.WriteLine(api.GetAnswersByQuestionID(list2[list2.Count - 1].ID));
+
+            Console.WriteLine();
+
+            List<Question> list3 = api.GetQuestions();
+            Console.WriteLine(api.EditQuestion(list3[list3.Count - 2].ID, api.GetQuestion(list3[list3.Count - 1].ID)));
+
+            Console.WriteLine();
+
+            Console.WriteLine();
+
+            Console.WriteLine();
+
+            Console.WriteLine();
 
             Boolean success = api.DeleteQuestion(result.ID);
             Console.WriteLine(success);
